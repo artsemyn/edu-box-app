@@ -5,6 +5,7 @@
 </ion-header>
 
 <ion-content class="ion-padding-horizontal">
+  <div class="page-settings">
 
   <!-- Section Title -->
   <p class="section-title">Pairing & Users</p>
@@ -67,6 +68,43 @@
     </ion-item>
 
   </ion-list>
+
+  <!-- Theme Toggle Section -->
+  <div class="theme-toggle-section">
+    <div class="theme-toggle-header">
+      <h4>Theme Selection</h4>
+      <ion-icon name="color-palette-outline"></ion-icon>
+    </div>
+    <p class="theme-toggle-description">Choose between EDUBOX and VOXELIZE themes</p>
+
+    <div class="theme-options">
+      <div class="theme-option theme-edubox" [class.active]="currentTheme === 'edubox'" (click)="selectTheme('edubox')">
+        <ion-icon name="cube" class="theme-icon"></ion-icon>
+        <div class="theme-name">EDUBOX</div>
+      </div>
+      <div class="theme-option theme-voxelize" [class.active]="currentTheme === 'voxelize'" (click)="selectTheme('voxelize')">
+        <ion-icon name="grid" class="theme-icon"></ion-icon>
+        <div class="theme-name">VOXELIZE</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Dark Mode Toggle Section -->
+  <div class="dark-mode-toggle-section">
+    <div class="dark-mode-header">
+      <div class="dark-mode-info">
+        <h4>Dark Mode</h4>
+        <p class="dark-mode-description">Switch between light and dark appearance</p>
+      </div>
+      <ion-toggle
+        [checked]="isDarkMode"
+        (ionChange)="toggleDarkMode($event)"
+        mode="ios">
+      </ion-toggle>
+    </div>
+  </div>
+
+  </div><!-- /.page-settings -->
 </ion-content>
 
 <!-- Footer Navigation -->

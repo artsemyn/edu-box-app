@@ -7,6 +7,7 @@
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
+  <div class="page-pattern">
   <div class="pattern-list-container">
     <ion-searchbar
       class="pattern-search"
@@ -59,43 +60,32 @@
     <ion-icon name="square" class="stop-icon" (click)="currentPattern = null"></ion-icon>
   </div>
 
-  <!-- Bottom Tab Bar -->
-  <div class="bottom-tab-bar">
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <ion-button 
-          color="medium" 
-          fill="clear" 
-          expand="block" 
-          routerLink="/home" 
-          routerDirection="back"
-          class="tab-button">
-          <ion-icon name="bulb-outline"></ion-icon>
-          <ion-label>Control</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button 
-          color="warning" 
-          fill="clear" 
-          expand="block" 
-          class="tab-button tab-button-active">
-          <ion-icon name="play-circle"></ion-icon>
-          <ion-label>Patterns</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button 
-          color="medium" 
-          fill="clear" 
-          expand="block" 
-          routerLink="/settings" 
-          routerDirection="forward"
-          class="tab-button">
-          <ion-icon name="settings-outline"></ion-icon>
-          <ion-label>System</ion-label>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </div>
+  </div><!-- /.page-pattern -->
 </ion-content>
+
+<!-- Footer Navigation -->
+<ion-footer>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <!-- Control = /home -->
+    <ion-tab-button tab="home" routerLink="/home">
+      <ion-icon name="bulb-outline"></ion-icon>
+      <ion-label>Control</ion-label>
+    </ion-tab-button>
+
+    <!-- Patterns = /pattern -->
+    <ion-tab-button tab="pattern" routerLink="/pattern" class="active-tab">
+      <div class="tab-active-bg">
+        <ion-icon name="play-outline"></ion-icon>
+        <ion-label>Patterns</ion-label>
+      </div>
+    </ion-tab-button>
+
+    <!-- System = /settings -->
+    <ion-tab-button tab="settings" routerLink="/settings">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>System</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-footer>

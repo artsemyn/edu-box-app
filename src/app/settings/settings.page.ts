@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule, Router } from '@angular/router';
+import { ThemeService, ThemeMode } from '../services/theme.service';
 
 // 👉 Tambahkan interface
 interface User {
@@ -29,7 +30,18 @@ export class SettingsPage implements OnInit {
   // 👉 Tentukan tipe datanya
   authorizedUsers: User[] = [];
 
-  constructor(private router: Router) {}
+  // Theme properties
+  currentTheme: ThemeMode = 'edubox';
+  isDarkMode: boolean = false;
+
+  constructor(
+    private router: Router,
+    private themeService: ThemeService
+  ) {
+    // Initialize current theme and dark mode
+    this.currentTheme = this.themeService.getTheme();
+    this.isDarkMode = this.themeService.isDarkMode();
+  }
 
   ngOnInit() {
     const savedName = localStorage.getItem('username');
@@ -65,5 +77,26 @@ export class SettingsPage implements OnInit {
 
   openUserSettings(user: User) {
     console.log('Open settings for:', user.name);
+  }
+
+  /**
+   * Select and apply a theme
+   * @param theme - The theme to apply ('edubox' or 'voxelize')
+   */
+  selectTheme(theme: ThemeMode): void {
+    this.currentTheme = theme;
+    this.themeService.setTheme(theme);
+    console.log(`Theme changed to: ${theme}`);
+  }
+
+  /**
+   * Toggle dark mode on/off
+   * @param event - The ion-toggle change event
+   */
+  toggleDarkMode(event: any): void {
+    const isEnabled = event.detail.checked;
+    this.isDarkMode = isEnabled;
+    this.themeService.setDarkMode(isEnabled);
+    console.log(`Dark mode ${isEnabled ? 'enabled' : 'disabled'}`);
   }
 }

@@ -1,21 +1,24 @@
 <ion-header class="ion-no-border">
-  <ion-toolbar><ion-title class="ion-text-start fw-bold">
-      <span class="text-warning">VOXE</span>LIZE
+  <ion-toolbar>
+    <ion-title class="ion-text-start fw-bold">
+      <ion-icon [name]="headerIcon" class="header-logo"></ion-icon>
+      <span class="text-primary">{{ themeName }}</span>
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true" class="ion-padding">
+  <div class="page-home">
   
   <!-- Mobile Layout -->
   <div class="mobile-layout">
-    <ion-label class="text-warning fw-bold subtitle">Manual Control Mode</ion-label>
+    <ion-label class="text-primary fw-bold subtitle">Manual Control Mode</ion-label>
 
     <div class="layer-selector-card">
       <div class="d-flex align-items-center mb-3">
         <ion-icon name="layers-outline" class="me-2"></ion-icon>
         <ion-label class="fw-bold">Current Layer (Z-Axis)</ion-label>
-        <ion-label slot="end" class="ms-auto text-warning fw-bold">{{ currentLayer }} / 6</ion-label>
+        <ion-label slot="end" class="ms-auto fw-bold">{{ currentLayer }} / 6</ion-label>
       </div>
       
       <div class="layer-buttons">
@@ -44,12 +47,12 @@
 
     <div class="action-buttons">
       <div class="action-card" (click)="fillLayer()">
-        <ion-icon name="color-fill-outline" color="warning"></ion-icon>
+        <ion-icon name="color-fill-outline"></ion-icon>
         <ion-label>Fill Layer</ion-label>
       </div>
 
       <div class="action-card" (click)="clearLayer()">
-        <ion-icon name="trash-outline" color="danger"></ion-icon>
+        <ion-icon name="trash-outline"></ion-icon>
         <ion-label>Clear Layer</ion-label>
       </div>
     </div>
@@ -64,7 +67,7 @@
 
   <!-- Desktop Layout -->
   <div class="desktop-layout">
-    <ion-label class="text-warning fw-bold subtitle">Manual Control Mode</ion-label>
+    <ion-label class="text-primary fw-bold subtitle">Manual Control Mode</ion-label>
 
     <div class="desktop-container">
       <!-- Left Side: Grid -->
@@ -123,27 +126,32 @@
     </div>
   </div>
 
-  <div class="bottom-tab-bar">
-    <ion-row>
-      <ion-col class="ion-text-center">
-        <ion-button color="warning" fill="clear" expand="block" class="tab-button-active">
-          <ion-icon name="bulb"></ion-icon>
-          <ion-label>Control</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button color="medium" fill="clear" expand="block" routerLink="/pattern">
-          <ion-icon name="play-circle-outline"></ion-icon>
-          <ion-label>Patterns</ion-label>
-        </ion-button>
-      </ion-col>
-      <ion-col class="ion-text-center">
-        <ion-button color="medium" fill="clear" expand="block" routerLink="/settings" routerDirection="forward">
-          <ion-icon name="settings-outline"></ion-icon>
-          <ion-label>System</ion-label>
-        </ion-button>
-      </ion-col>
-    </ion-row>
-  </div>
-  
+  </div><!-- /.page-home -->
 </ion-content>
+
+<!-- Footer Navigation -->
+<ion-footer>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <!-- Control = /home -->
+    <ion-tab-button tab="home" routerLink="/home" class="active-tab">
+      <div class="tab-active-bg">
+        <ion-icon name="bulb-outline"></ion-icon>
+        <ion-label>Control</ion-label>
+      </div>
+    </ion-tab-button>
+
+    <!-- Patterns = /pattern -->
+    <ion-tab-button tab="pattern" routerLink="/pattern">
+      <ion-icon name="play-outline"></ion-icon>
+      <ion-label>Patterns</ion-label>
+    </ion-tab-button>
+
+    <!-- System = /settings -->
+    <ion-tab-button tab="settings" routerLink="/settings">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>System</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-footer>

@@ -5,6 +5,7 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { ThemeService } from '../services/theme.service';
 
 @Component({
   selector: 'app-home',
@@ -21,16 +22,32 @@ import { Router } from '@angular/router';
 export class HomePage {
   // Properti untuk menyimpan status LED (true = ON, false = OFF)
   // 6x6 = 36 LED
-  ledGrid: boolean[] = new Array(36).fill(false); 
-  
+  ledGrid: boolean[] = new Array(36).fill(false);
+
   // Properti Layer (Z-Axis)
   layers: number[] = [1, 2, 3, 4, 5, 6];
   currentLayer: number = 1;
 
+  // Theme properties
+  headerIcon: string = 'cube';
+  themeName: string = 'VOXELIZE';
+
   constructor(
     private router: Router,
-    private toastController: ToastController
-  ) {}
+    private toastController: ToastController,
+    private themeService: ThemeService
+  ) {
+    // Initialize theme-based properties
+    this.updateThemeProperties();
+  }
+
+  /**
+   * Update theme-dependent properties (icon and name)
+   */
+  private updateThemeProperties(): void {
+    this.headerIcon = this.themeService.getHeaderIcon();
+    this.themeName = this.themeService.getThemeDisplayName();
+  }
 
   /**
    * Fungsi untuk memilih layer (Z-Axis) yang sedang diedit.

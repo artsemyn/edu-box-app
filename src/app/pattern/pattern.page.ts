@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
+import { ThemeService } from '../services/theme.service';
 
 interface Pattern {
   name: string;
@@ -15,13 +16,14 @@ interface Pattern {
   styleUrls: ['pattern.page.scss'],
   standalone: true,
   imports: [
-    CommonModule, 
-    FormsModule, 
-    IonicModule, 
+    CommonModule,
+    FormsModule,
+    IonicModule,
     RouterModule
   ]
 })
 export class PatternPage {
+  constructor(private themeService: ThemeService) {}
   patterns: Pattern[] = [
     { name: 'Rainbow Wave', duration: '2:30' },
     { name: 'Color Wipe', duration: '1:45' },
@@ -100,8 +102,6 @@ export class PatternPage {
   onFavToggle(ev: any) {
     this.favoritesOnly = !!ev?.detail?.checked;
   }
-
-  constructor() {}
 
   selectPattern(pattern: Pattern) {
     if (this.currentPattern?.name === pattern.name) {
