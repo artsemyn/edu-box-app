@@ -1,33 +1,98 @@
-<ion-header [translucent]="true">
+<ion-header>
   <ion-toolbar>
-    <ion-title>Settings</ion-title>
+    <ion-title class="header-title">Management</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
-  <h1>Settings Page</h1>
-  <p>This is where your settings will be displayed.</p>
+<ion-content class="ion-padding-horizontal">
+
+  <!-- Section Title -->
+  <p class="section-title">Pairing & Users</p>
+
+  <!-- Pairing Card -->
+  <div class="pairing-card ion-padding">
+    <div class="card-status-area">
+      <ion-icon
+        name="bluetooth"
+        class="bluetooth-icon"
+        [ngClass]="{
+          'is-connected': bluetoothStatus === 'Connected',
+          'is-scanning': bluetoothStatus === 'Scanning'
+        }">
+      </ion-icon>
+
+      <h3>{{ bluetoothStatus }}</h3>
+      <p>{{ statusMessage }}</p>
+    </div>
+
+    <ion-button
+      expand="block"
+      color="warning"
+      class="start-pairing-btn"
+      (click)="startPairing()"
+      [disabled]="bluetoothStatus === 'Scanning'">
+      Start Pairing
+    </ion-button>
+  </div>
+
+  <!-- User Section -->
+  <p class="section-title">User</p>
+
+  <ion-list lines="none" class="user-list">
+
+    <ion-item
+      class="user-item"
+      *ngFor="let user of authorizedUsers"
+      (click)="openUserSettings(user)">
+      
+      <div
+        slot="start"
+        class="status-dot"
+        [ngClass]="{
+          'owner-dot': user.status === 'owner',
+          'viewer-dot': user.status === 'viewer'
+        }">
+      </div>
+
+      <ion-label>
+        <p class="user-name">{{ user.name }}</p>
+        <p class="user-role">{{ user.role }}</p>
+      </ion-label>
+
+      <ion-icon
+        name="settings-outline"
+        slot="end"
+        class="settings-icon">
+      </ion-icon>
+    </ion-item>
+
+  </ion-list>
 </ion-content>
 
-<div class="bottom-tab-bar">
-  <ion-row>
-    <ion-col class="ion-text-center">
-      <ion-button color="medium" fill="clear" expand="block" routerLink="/home" routerDirection="root">
-        <ion-icon name="bulb"></ion-icon>
-        <ion-label>Control</ion-label>
-      </ion-button>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <ion-button color="medium" fill="clear" expand="block" routerLink="/pattern" routerDirection="forward">
-        <ion-icon name="play-circle-outline"></ion-icon>
-        <ion-label>Patterns</ion-label>
-      </ion-button>
-    </ion-col>
-    <ion-col class="ion-text-center">
-      <ion-button color="warning" fill="clear" expand="block" class="tab-button-active">
+<!-- Footer Navigation -->
+<ion-footer>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <!-- Control = /home -->
+    <ion-tab-button tab="home" routerLink="/home">
+      <ion-icon name="bulb-outline"></ion-icon>
+      <ion-label>Control</ion-label>
+    </ion-tab-button>
+
+    <!-- Patterns = /pattern -->
+    <ion-tab-button tab="pattern" routerLink="/pattern">
+      <ion-icon name="play-outline"></ion-icon>
+      <ion-label>Patterns</ion-label>
+    </ion-tab-button>
+
+    <!-- System = /settings -->
+    <ion-tab-button tab="settings" routerLink="/settings" class="active-tab">
+      <div class="tab-active-bg">
         <ion-icon name="settings-outline"></ion-icon>
         <ion-label>System</ion-label>
-      </ion-button>
-    </ion-col>
-  </ion-row>
-</div>
+      </div>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-footer>
+
