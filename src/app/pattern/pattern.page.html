@@ -1,0 +1,76 @@
+<ion-header class="header-with-shadow">
+  <ion-toolbar>
+    <ion-title class="ion-text-start fw-bold">
+      <span class="text-warning">LED</span><span class="text-dark">Animations</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <ion-label class="text-warning fw-bold subtitle">Select a preset pattern</ion-label>
+  
+  <div class="pattern-list-container">
+    <ion-list lines="none" class="pattern-list">
+      <ion-item *ngFor="let pattern of patterns" class="pattern-item" (click)="selectPattern(pattern)" detail="false">
+        <div class="item-content">
+          <div class="play-icon-box">
+            <ion-icon name="play" class="play-icon"></ion-icon>
+          </div>
+          <div class="text-info">
+            <div class="name">{{ pattern.name }}</div>
+            <div class="duration">Duration: {{ pattern.duration }}</div>
+          </div>
+        </div>
+        <div slot="end" class="status-dot" [class.active]="currentPattern?.name === pattern.name"></div>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="now-playing-panel" *ngIf="currentPattern">
+    <div class="now-playing-text">
+      <div class="label">NOW PLAYING</div>
+      <div class="name">{{ currentPattern.name }}</div>
+    </div>
+    <ion-icon name="square" class="stop-icon" (click)="currentPattern = null"></ion-icon>
+  </div>
+
+  <!-- Bottom Tab Bar -->
+  <div class="bottom-tab-bar">
+    <ion-row>
+      <ion-col class="ion-text-center">
+        <ion-button 
+          color="medium" 
+          fill="clear" 
+          expand="block" 
+          routerLink="/home" 
+          routerDirection="back"
+          class="tab-button">
+          <ion-icon name="bulb-outline"></ion-icon>
+          <ion-label>Control</ion-label>
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <ion-button 
+          color="warning" 
+          fill="clear" 
+          expand="block" 
+          class="tab-button tab-button-active">
+          <ion-icon name="play-circle"></ion-icon>
+          <ion-label>Patterns</ion-label>
+        </ion-button>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <ion-button 
+          color="medium" 
+          fill="clear" 
+          expand="block" 
+          routerLink="/settings" 
+          routerDirection="forward"
+          class="tab-button">
+          <ion-icon name="settings-outline"></ion-icon>
+          <ion-label>System</ion-label>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </div>
+</ion-content>

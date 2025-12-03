@@ -1,0 +1,33 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <h1>Settings Page</h1>
+  <p>This is where your settings will be displayed.</p>
+</ion-content>
+
+<div class="bottom-tab-bar">
+  <ion-row>
+    <ion-col class="ion-text-center">
+      <ion-button color="medium" fill="clear" expand="block" routerLink="/home" routerDirection="root">
+        <ion-icon name="bulb"></ion-icon>
+        <ion-label>Control</ion-label>
+      </ion-button>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <ion-button color="medium" fill="clear" expand="block" routerLink="/pattern" routerDirection="forward">
+        <ion-icon name="play-circle-outline"></ion-icon>
+        <ion-label>Patterns</ion-label>
+      </ion-button>
+    </ion-col>
+    <ion-col class="ion-text-center">
+      <ion-button color="warning" fill="clear" expand="block" class="tab-button-active">
+        <ion-icon name="settings-outline"></ion-icon>
+        <ion-label>System</ion-label>
+      </ion-button>
+    </ion-col>
+  </ion-row>
+</div>

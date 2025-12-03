@@ -1,0 +1,660 @@
+// ===================================
+//             VARIABLES
+// ===================================
+$warning-color: #ffc107; // Kuning/Emas
+$dark-color: #2d2d2d; // Abu-abu Gelap/Hampir Hitam
+$light-gray: #e9ecef; // Abu-abu sangat terang
+$border-gray: #dee2e6;
+$text-gray: #6c757d; // Abu-abu untuk teks sekunder
+
+// ===================================
+//               HEADER
+// ===================================
+ion-header {
+    
+  ion-toolbar {
+    // HEADER PUTIH
+    --background: #ffffff;
+    --border-width: 0;
+    --min-height: 64px;
+    --padding-top: 0.5rem;
+    --padding-bottom: 0.5rem;
+    --padding-start: 0.9rem;
+    --padding-end: 0.9rem;
+    
+    ion-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      padding: 0 0 0 10%;
+      // JUDUL HITAM KARENA BACKGROUND PUTIH
+      color: #000000; 
+      text-align: left;
+      letter-spacing: 0.5px;
+      
+      .text-warning {
+        color: $warning-color;
+        font-weight: 800;
+        margin-right: 0.25rem;
+      }
+      
+      text-shadow: none;
+    }
+  }
+  
+  // GARIS KUNING DI BAWAH HEADER
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: $warning-color; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+}
+
+// ===================================
+//             ION-CONTENT
+// ===================================
+ion-content {
+  --background: #f5f5f5; 
+  --padding-bottom: 100px;
+}
+
+// ===================================
+//        CUSTOM SCROLLBAR STYLE
+// ===================================
+// Mengoptimalkan tampilan scrollbar di desktop
+@media (min-width: 992px) {
+  ion-content {
+    &::-webkit-scrollbar {
+      width: 10px;
+      height: 10px;
+    }
+
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1;
+      border-radius: 5px;
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background: $warning-color; 
+      border-radius: 5px;
+      border: 2px solid #f5f5f5; 
+    }
+
+    &::-webkit-scrollbar-thumb:hover {
+      background: darken($warning-color, 10%);
+    }
+  }
+}
+
+
+// ===================================
+//        LAYOUT MEDIA QUERIES
+// ===================================
+.mobile-layout {
+  display: block;
+  
+  @media (min-width: 992px) {
+    display: none;
+  }
+}
+
+.desktop-layout {
+  display: none;
+  
+  @media (min-width: 992px) {
+    display: block;
+  }
+}
+
+// Common styles
+.subtitle {
+  color: $warning-color;
+  font-size: 1rem;
+  display: block;
+  margin-bottom: 1.5rem;
+  font-weight: 600;
+}
+
+.fw-bold {
+  font-weight: 600;
+}
+
+// ===================================
+//          MOBILE LAYOUT
+// ===================================
+.mobile-layout {
+  padding: 1rem;
+}
+
+// Layer Selector Card (Mobile)
+.layer-selector-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.25rem;
+  margin-bottom: 1.5rem;
+  
+  // Border kuning tipis dan shadow halus
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+  border: 1px solid $warning-color; 
+  
+  .d-flex {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    
+    ion-icon {
+      font-size: 1.25rem;
+      margin-right: 0.5rem;
+      color: $text-gray;
+    }
+    
+    ion-label {
+      font-size: 0.9rem;
+      color: $text-gray;
+      
+      &.ms-auto {
+        margin-left: auto;
+        color: $warning-color;
+        font-weight: 700;
+        font-size: 1rem;
+      }
+    }
+  }
+  
+  .layer-buttons {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    
+    ion-button.layer-btn {
+      --border-radius: 12px;
+      --box-shadow: none;
+      --padding-start: 0;
+      --padding-end: 0;
+      height: 48px;
+      font-weight: 600;
+      font-size: 1rem;
+      margin: 0;
+      
+      &[color="warning"] {
+        --background: $warning-color;
+        --color: #000000;
+        font-weight: 700;
+      }
+      
+      &[color="light"] {
+        --background: $light-gray;
+        --color: $text-gray;
+      }
+    }
+  }
+}
+
+// XY Plane Card (Mobile)
+.xy-plane-card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  
+  // Border kuning tipis dan shadow halus
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid $warning-color; 
+  
+  .grid-container {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    
+    .led-cell {
+      aspect-ratio: 1;
+      background: $light-gray;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: $border-gray;
+        transform: scale(1.05);
+      }
+      
+      &.active {
+        background: $warning-color;
+        box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+      }
+    }
+  }
+  
+  .plane-label {
+    font-size: 0.75rem;
+    color: #adb5bd;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: block;
+    margin-top: 1rem;
+  }
+}
+
+// Action Buttons (Mobile)
+.action-buttons {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+  
+  .action-card {
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    // Border abu-abu default, shadow lebih halus
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    border: 2px solid $border-gray; 
+    
+    &:hover {
+      transform: translateY(-2px);
+      // Border kuning saat hover
+      border-color: $warning-color; 
+    }
+    
+    ion-icon {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+      color: $text-gray; 
+    }
+    
+    ion-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: #495057;
+      display: block;
+    }
+    
+    &:nth-child(1) ion-icon { color: $warning-color; }
+    &:nth-child(2) ion-icon { color: #dc3545; } 
+  }
+}
+
+// ===================================
+//          DESKTOP LAYOUT
+// ===================================
+.desktop-layout {
+  padding: 2rem;
+  max-width: 1400px;
+  margin: 0 auto;
+  
+  .subtitle {
+    font-size: 1.125rem;
+    margin-bottom: 2rem;
+  }
+  
+  .d-flex {
+    .subtitle {
+      font-size: 1.2rem;
+      margin-bottom: 0;
+      display: block;
+    }
+    
+    .pattern-btn {
+      --color: var(--ion-color-warning);
+      --border-radius: 20px;
+      --padding-start: 12px;
+      --padding-end: 12px;
+      height: 36px;
+      font-weight: 600;
+      text-transform: none;
+      
+      ion-icon {
+        margin-right: 6px;
+        font-size: 1.1em;
+      }
+    }
+  }
+  
+  .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    display: block;
+  }
+}
+
+.desktop-container {
+  display: grid;
+  grid-template-columns: 1fr 400px;
+  gap: 2rem;
+}
+
+// Left Section (Desktop)
+.left-section {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 2rem;
+  
+  // Border kuning tipis dan shadow halus
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08); 
+  border: 1px solid $warning-color; 
+  
+  .grid-container-desktop {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    max-width: 500px;
+    
+    .led-cell-desktop {
+      aspect-ratio: 1;
+      background: $light-gray;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background: $border-gray;
+        transform: scale(1.05);
+      }
+      
+      &.active {
+        background: $warning-color;
+        box-shadow: 0 0 10px rgba(255, 193, 7, 0.4);
+      }
+    }
+  }
+  
+  .plane-label-desktop {
+    font-size: 0.875rem;
+    color: #adb5bd;
+    display: block;
+    text-align: center;
+  }
+}
+
+// Right Section (Desktop)
+.right-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.layer-info {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  
+  // Border kuning tipis dan shadow halus
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid $warning-color; 
+  
+  .current-layer-label {
+    font-size: 0.9rem;
+    color: $text-gray;
+    display: block;
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  
+  .layer-buttons-desktop {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 0.75rem;
+    
+    ion-button.layer-btn-desktop {
+      --border-radius: 12px;
+      --box-shadow: none;
+      --padding-start: 0;
+      --padding-end: 0;
+      height: 52px;
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin: 0;
+      
+      &[color="warning"] {
+        --background: $warning-color;
+        --color: #000000;
+      }
+      
+      &[color="dark"] {
+        --background: $dark-color;
+        --color: #ffffff;
+      }
+    }
+  }
+}
+
+.action-buttons-desktop {
+  display: flex;
+  flex-direction: column; 
+  gap: 1rem;
+  
+  .action-card-desktop {
+    flex: 1;
+    background: #ffffff;
+    border-radius: 16px;
+    padding: 1.25rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    
+    // Box shadow lebih halus
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    
+    &.fill {
+      border: 2px solid $warning-color;
+      
+      ion-icon {
+        color: $warning-color;
+      }
+      
+      ion-label {
+        color: #000000;
+      }
+    }
+    
+    &.clear {
+      border: 2px solid $light-gray;
+      
+      ion-icon {
+        color: #dc3545;
+      }
+      
+      ion-label {
+        color: #000000;
+      }
+    }
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+    
+    ion-icon {
+      font-size: 1.5rem;
+    }
+    
+    ion-label {
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+  }
+}
+
+.preview-section {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.5rem;
+  flex: 1;
+  min-height: 200px;
+  
+  // Border kuning tipis dan shadow halus
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  border: 1px solid $warning-color; 
+}
+
+// ========== SAVE BUTTONS ==========
+// Mobile Save Button
+.save-button-container {
+  margin-bottom: 1.5rem;
+  padding: 0 0.5rem;
+  
+  .save-pattern-btn {
+    --background: #ffffff;
+    --color: #000000;
+    --border-radius: 16px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --padding-top: 1rem;
+    --padding-bottom: 1rem;
+    height: 56px;
+    font-weight: 700;
+    font-size: 0.95rem;
+    letter-spacing: 0.5px;
+    border: 2px solid $light-gray;
+    margin: 0;
+    text-transform: uppercase;
+    
+    &:hover {
+      --background: #f8f9fa;
+      border-color: $warning-color;
+    }
+    
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+// Desktop Save Button
+.save-button-container-desktop {
+  margin: 1.5rem 0;
+  
+  .save-pattern-btn-desktop {
+    --background: #000000; 
+    --color: #ffffff;
+    --border-radius: 16px;
+    --box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    --padding-top: 1.25rem;
+    --padding-bottom: 1.25rem;
+    height: 60px;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: 0.5px;
+    border: none; 
+    margin: 0;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      --background: $dark-color;
+      transform: translateY(-2px);
+      --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    }
+    
+    &:active {
+      transform: translateY(0);
+    }
+  }
+}
+
+// ========== BOTTOM TAB BAR ==========
+// Tab Bar tetap tampil di desktop
+
+.bottom-tab-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid $border-gray;
+  padding: 0.75rem 0;
+  z-index: 999;
+  
+  ion-row {
+    margin: 0;
+  }
+  
+  ion-col {
+    padding: 0;
+  }
+  
+  ion-button {
+    --padding-top: 0.5rem;
+    --padding-bottom: 0.5rem;
+    height: auto;
+    flex-direction: column;
+    
+    ion-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.25rem;
+      color: $text-gray;
+    }
+    
+    ion-label {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: $text-gray;
+    }
+    
+    &.tab-button-active {
+      ion-icon,
+      ion-label {
+        color: $warning-color;
+      }
+    }
+  }
+}
+
+// Utilities
+.me-2 {
+  margin-right: 0.5rem;
+}
+
+.ms-auto {
+  margin-left: auto;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.align-items-center {
+  align-items: center;
+}
+
+.ion-text-center {
+  text-align: center;
+}
+
+.text-warning {
+  color: $warning-color;
+}
+
+// Animation
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+.led-cell.active,
+.led-cell-desktop.active {
+  animation: pulse 2s ease-in-out infinite;
+}
