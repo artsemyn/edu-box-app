@@ -30,16 +30,14 @@ export class SettingsPage implements OnInit {
   // 👉 Tentukan tipe datanya
   authorizedUsers: User[] = [];
 
-  // Theme properties
-  currentTheme: ThemeMode = 'edubox';
+  // Dark mode property
   isDarkMode: boolean = false;
 
   constructor(
     private router: Router,
     private themeService: ThemeService
   ) {
-    // Initialize current theme and dark mode
-    this.currentTheme = this.themeService.getTheme();
+    // Initialize dark mode
     this.isDarkMode = this.themeService.isDarkMode();
   }
 
@@ -77,16 +75,6 @@ export class SettingsPage implements OnInit {
 
   openUserSettings(user: User) {
     console.log('Open settings for:', user.name);
-  }
-
-  /**
-   * Select and apply a theme
-   * @param theme - The theme to apply ('edubox' or 'voxelize')
-   */
-  selectTheme(theme: ThemeMode): void {
-    this.currentTheme = theme;
-    this.themeService.setTheme(theme);
-    console.log(`Theme changed to: ${theme}`);
   }
 
   /**

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-export type ThemeMode = 'edubox' | 'voxelize';
+export type ThemeMode = 'edubox';
 
 @Injectable({
   providedIn: 'root'
@@ -10,14 +10,8 @@ export class ThemeService {
   private isDarkModeEnabled: boolean = false;
 
   constructor() {
-    // Load saved theme from localStorage
-    const savedTheme = localStorage.getItem('app-theme') as ThemeMode;
-    if (savedTheme && (savedTheme === 'edubox' || savedTheme === 'voxelize')) {
-      this.setTheme(savedTheme);
-    } else {
-      // Set default theme
-      this.setTheme('edubox');
-    }
+    // Always set to edubox theme
+    this.setTheme('edubox');
 
     // Load saved dark mode preference from localStorage
     const savedDarkMode = localStorage.getItem('app-dark-mode');
@@ -28,13 +22,13 @@ export class ThemeService {
 
   /**
    * Set the application theme
-   * @param theme - The theme to apply ('edubox' or 'voxelize')
+   * @param theme - The theme to apply ('edubox')
    */
   setTheme(theme: ThemeMode): void {
     this.currentTheme = theme;
 
     // Remove existing theme classes
-    document.body.classList.remove('theme-edubox', 'theme-voxelize');
+    document.body.classList.remove('theme-edubox');
 
     // Add new theme class
     document.body.classList.add(`theme-${theme}`);
@@ -54,19 +48,11 @@ export class ThemeService {
   }
 
   /**
-   * Toggle between EDUBOX and VOXELIZE themes
-   */
-  toggleTheme(): void {
-    const newTheme = this.currentTheme === 'edubox' ? 'voxelize' : 'edubox';
-    this.setTheme(newTheme);
-  }
-
-  /**
    * Get the appropriate header icon based on current theme
    * @returns The icon name for the current theme
    */
   getHeaderIcon(): string {
-    return this.currentTheme === 'edubox' ? 'cube' : 'grid';
+    return 'cube';
   }
 
   /**
@@ -74,7 +60,7 @@ export class ThemeService {
    * @returns The user-friendly name of the current theme
    */
   getThemeDisplayName(): string {
-    return this.currentTheme === 'edubox' ? 'EDUBOX' : 'VOXELIZE';
+    return 'EDUBOX';
   }
 
   /**
