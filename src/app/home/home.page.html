@@ -9,118 +9,80 @@
 
 <ion-content [fullscreen]="true" class="ion-padding">
   <div class="page-home">
-  
+
   <!-- Mobile Layout -->
   <div class="mobile-layout">
-    <ion-label class="text-primary fw-bold subtitle">Manual Control Mode</ion-label>
-
-    <div class="layer-selector-card">
-      <div class="d-flex align-items-center mb-3">
-        <ion-icon name="layers-outline" class="me-2"></ion-icon>
-        <ion-label class="fw-bold">Current Layer (Z-Axis)</ion-label>
-        <ion-label slot="end" class="ms-auto fw-bold">{{ currentLayer }} / 6</ion-label>
-      </div>
-      
-      <div class="layer-buttons">
-        <ion-button 
-          *ngFor="let layer of layers" 
-          [color]="layer === currentLayer ? 'warning' : 'light'" 
-          (click)="selectLayer(layer)"
-          class="layer-btn"
-        >
-          {{ layer }}
-        </ion-button>
-      </div>
-    </div>
-
     <div class="xy-plane-card">
       <div class="grid-container">
-        <div 
-          *ngFor="let led of ledGrid; let i = index" 
-          class="led-cell" 
-          [class.active]="led" 
-          (click)="toggleLed(i)"
+        <div
+          *ngFor="let led of ledGrid; let i = index"
+          class="led-cell"
+          [class.active]="led"
         ></div>
       </div>
-      <ion-label class="plane-label">X - Y PLANE</ion-label>
     </div>
 
-    <div class="action-buttons">
-      <div class="action-card" (click)="fillLayer()">
-        <ion-icon name="color-fill-outline"></ion-icon>
-        <ion-label>Fill Layer</ion-label>
+    <!-- Pattern Cards Container -->
+    <div class="select-animation-card-mobile">
+      <div class="pattern-list-header-mobile">
+        <ion-label class="fw-bold">Select Animation</ion-label>
       </div>
-
-      <div class="action-card" (click)="clearLayer()">
-        <ion-icon name="trash-outline"></ion-icon>
-        <ion-label>Clear Layer</ion-label>
+      <div class="pattern-cards-container">
+        <div
+          class="pattern-card"
+          *ngFor="let pattern of patterns"
+          (click)="selectPattern(pattern)"
+          [class.selected]="selectedPattern?.id === pattern.id"
+        >
+          <div class="card-icon">
+            <ion-icon [name]="selectedPattern?.id === pattern.id ? 'stop' : 'play-outline'"></ion-icon>
+          </div>
+          <div class="card-info">
+            <div class="card-name">{{ pattern.name }}</div>
+          </div>
+          <div class="card-indicator" [class.active]="selectedPattern?.id === pattern.id"></div>
+        </div>
       </div>
-    </div>
-
-    <!-- Save Pattern Button (Mobile) -->
-    <div class="save-button-container">
-      <ion-button expand="block" class="save-pattern-btn" (click)="savePattern()">
-        SAVE PATTERN
-      </ion-button>
     </div>
   </div>
 
   <!-- Desktop Layout -->
   <div class="desktop-layout">
-    <ion-label class="text-primary fw-bold subtitle">Manual Control Mode</ion-label>
-
     <div class="desktop-container">
       <!-- Left Side: Grid -->
       <div class="left-section">
         <div class="grid-container-desktop">
-          <div 
-            *ngFor="let led of ledGrid; let i = index" 
-            class="led-cell-desktop" 
-            [class.active]="led" 
-            (click)="toggleLed(i)"
+          <div
+            *ngFor="let led of ledGrid; let i = index"
+            class="led-cell-desktop"
+            [class.active]="led"
           ></div>
         </div>
-        <ion-label class="plane-label-desktop">x - y</ion-label>
       </div>
 
-      <!-- Right Side: Controls -->
+      <!-- Right Side: Pattern List -->
       <div class="right-section">
-        <div class="layer-info">
-          <ion-label class="current-layer-label">Current Layer (Z)</ion-label>
-          <div class="layer-buttons-desktop">
-            <ion-button 
-              *ngFor="let layer of layers" 
-              [color]="layer === currentLayer ? 'warning' : 'dark'" 
-              (click)="selectLayer(layer)"
-              class="layer-btn-desktop"
-              [class.active]="layer === currentLayer"
+        <div class="select-animation-card">
+          <div class="pattern-list-header">
+            <ion-label class="fw-bold">Select Animation</ion-label>
+          </div>
+
+          <div class="pattern-cards-desktop">
+            <div
+              class="pattern-card"
+              *ngFor="let pattern of patterns"
+              (click)="selectPattern(pattern)"
+              [class.selected]="selectedPattern?.id === pattern.id"
             >
-              {{ layer }}
-            </ion-button>
+              <div class="card-icon">
+                <ion-icon [name]="selectedPattern?.id === pattern.id ? 'stop' : 'play-outline'"></ion-icon>
+              </div>
+              <div class="card-info">
+                <div class="card-name">{{ pattern.name }}</div>
+              </div>
+              <div class="card-indicator" [class.active]="selectedPattern?.id === pattern.id"></div>
+            </div>
           </div>
-        </div>
-
-        <div class="action-buttons-desktop">
-          <div class="action-card-desktop fill" (click)="fillLayer()">
-            <ion-icon name="color-fill-outline"></ion-icon>
-            <ion-label>Fill Layer</ion-label>
-          </div>
-
-          <div class="action-card-desktop clear" (click)="clearLayer()">
-            <ion-icon name="trash-outline"></ion-icon>
-            <ion-label>Clear Layer</ion-label>
-          </div>
-        </div>
-
-        <!-- Save Pattern Button (Desktop) -->
-        <div class="save-button-container-desktop">
-          <ion-button expand="block" class="save-pattern-btn-desktop" (click)="savePattern()">
-            SAVE PATTERN
-          </ion-button>
-        </div>
-
-        <div class="preview-section">
-          <!-- Preview placeholder -->
         </div>
       </div>
     </div>

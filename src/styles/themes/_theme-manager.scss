@@ -14,8 +14,8 @@
   --theme-danger: #{$edubox-danger};
 
   // Light mode specific colors
-  --theme-bg: #ffffff;
-  --theme-content-bg: #f5f5f5;
+  --theme-bg: #F6FFE8;
+  --theme-content-bg: #F6FFE8;
   --theme-card-bg: #ffffff;
   --theme-main-text: #000000;
   --theme-secondary-text: #6c757d;
@@ -32,8 +32,8 @@ body.theme-edubox {
   --theme-danger: #{$edubox-danger};
 
   // Light mode colors
-  --theme-bg: #ffffff;
-  --theme-content-bg: #f5f5f5;
+  --theme-bg: #F6FFE8;
+  --theme-content-bg: #F6FFE8;
   --theme-card-bg: #ffffff;
   --theme-main-text: #000000;
   --theme-secondary-text: #6c757d;
@@ -51,6 +51,10 @@ body.dark-mode {
   --theme-card-bg: #2d2d2d;
   --theme-main-text: #ffffff;
   --theme-secondary-text: #b0b0b0;
+
+  // Remap legacy variables for dark mode
+  --theme-dark: #ffffff;
+  --theme-text: #b0b0b0;
 
   // Adjust borders and UI elements for dark mode
   --theme-border: #404040;

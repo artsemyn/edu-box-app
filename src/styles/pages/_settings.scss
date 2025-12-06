@@ -26,88 +26,75 @@
     padding-left: 16px;
   }
 
-  // Pairing Card is in _cards.scss as shared component
+  // Profile Information Card
+  .profile-info-card {
+    background: var(--theme-card-bg);
+    border-radius: $border-radius-md;
+    border: 1px solid var(--theme-border);
+    margin: 16px;
 
-  // Authorized Users Section
-  .user-list {
-    background: transparent;
-    padding: 0 16px;
-  }
+    .profile-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
 
-  .authorized-header-item {
-    --background: transparent;
-    --padding-start: 0;
-    --inner-padding-end: 0;
-    --min-height: 40px;
-    margin-top: 15px;
-
-    .users-icon-container {
-      @include flex-center;
-
-      .users-icon {
-        font-size: 1.4em;
-        margin-right: 8px;
-        color: var(--theme-main-text);
+      .profile-avatar {
+        font-size: 4rem;
+        color: var(--theme-primary);
       }
 
-      ion-label {
-        font-size: 1em;
-        font-weight: 600;
-        color: var(--theme-main-text);
+      .profile-details {
+        flex: 1;
+
+        .profile-name {
+          font-size: 1.3rem;
+          font-weight: 700;
+          color: var(--theme-main-text);
+          margin: 0 0 0.25rem 0;
+        }
+
+        .profile-email {
+          font-size: 0.9rem;
+          color: var(--theme-secondary-text);
+          margin: 0;
+        }
       }
     }
 
-    .add-user-icon {
-      font-size: 1.4em;
-      color: var(--theme-secondary-text);
+    .edit-profile-btn {
+      --border-color: var(--theme-primary);
+      --color: var(--theme-primary);
+      font-weight: 600;
     }
   }
 
-  .user-item {
-    --background: var(--theme-card-bg);
-    --padding-start: 0;
-    --inner-padding-end: 0;
-    --min-height: 65px;
-    border-bottom: 1px solid var(--theme-border);
-    cursor: pointer;
-
-    &:last-child {
-      border-bottom: none;
-    }
+  // Device Connection Card (renamed from pairing-card)
+  .device-connection-card {
+    background: var(--theme-card-bg);
+    border-radius: $border-radius-md;
+    border: 1px solid var(--theme-border);
+    margin: 16px;
   }
 
-  .user-name {
-    font-weight: 500;
-    font-size: 1em;
-    margin: 0;
-    color: var(--theme-main-text);
+  // Preferences Card
+  .preferences-card {
+    margin: 16px;
   }
 
-  .user-role {
-    font-size: 0.85em;
-    color: var(--theme-secondary-text);
-    margin-top: 2px;
-  }
+  // Account Actions Card
+  .account-actions-card {
+    margin: 16px;
 
-  .settings-icon {
-    font-size: 1.4em;
-    color: var(--theme-secondary-text);
-  }
+    .logout-btn {
+      --background: var(--theme-danger);
+      --color: #ffffff;
+      font-weight: 600;
+      height: 48px;
 
-  // Status Dot
-  .status-dot {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    margin-right: 15px;
-
-    &.owner-dot {
-      background: var(--theme-success);
-    }
-
-    &.viewer-dot {
-      background: var(--theme-secondary-text);
-      border: 1px solid var(--theme-border);
+      ion-icon {
+        font-size: 1.2rem;
+      }
     }
   }
 

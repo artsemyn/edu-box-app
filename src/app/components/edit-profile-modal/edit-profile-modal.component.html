@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Edit Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="edit-profile-form">
+    <!-- Name Input -->
+    <ion-item class="input-item">
+      <ion-label position="stacked">Display Name</ion-label>
+      <ion-input
+        type="text"
+        [(ngModel)]="newName"
+        placeholder="Enter your name"
+        [disabled]="isLoading"
+      ></ion-input>
+    </ion-item>
+
+    <!-- Email (Read-only) -->
+    <ion-item class="input-item">
+      <ion-label position="stacked">Email</ion-label>
+      <ion-input
+        type="email"
+        [value]="userEmail"
+        readonly
+        disabled
+      ></ion-input>
+      <ion-note slot="helper">Email cannot be changed</ion-note>
+    </ion-item>
+
+    <!-- Save Button -->
+    <ion-button
+      expand="block"
+      class="save-btn"
+      (click)="saveProfile()"
+      [disabled]="isLoading">
+      <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+      <span *ngIf="!isLoading">Save Changes</span>
+    </ion-button>
+
+    <!-- Cancel Button -->
+    <ion-button
+      expand="block"
+      fill="outline"
+      class="cancel-btn"
+      (click)="cancel()"
+      [disabled]="isLoading">
+      Cancel
+    </ion-button>
+  </div>
+</ion-content>

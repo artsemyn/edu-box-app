@@ -1,0 +1,20 @@
+.edit-profile-form {
+  .input-item {
+    --background: var(--theme-card-bg);
+    --border-color: var(--theme-border);
+    border-radius: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .save-btn {
+    margin-top: 1.5rem;
+    --background: var(--theme-primary);
+    --color: var(--theme-dark);
+    font-weight: 600;
+  }
+
+  .cancel-btn {
+    margin-top: 0.5rem;
+    --color: var(--theme-text);
+  }
+}

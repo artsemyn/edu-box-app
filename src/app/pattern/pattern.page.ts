@@ -1,14 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { ThemeService } from '../services/theme.service';
-
-interface Pattern {
-  name: string;
-  duration: string;
-}
+import { AnimationPatternService, AnimationPattern } from '../services/animation-pattern.service';
+import { LedControlService } from '../services/led-control.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-pattern',
@@ -22,34 +20,68 @@ interface Pattern {
     RouterModule
   ]
 })
-export class PatternPage {
-  constructor(private themeService: ThemeService) {}
-  patterns: Pattern[] = [
-    { name: 'Rainbow Wave', duration: '2:30' },
-    { name: 'Color Wipe', duration: '1:45' },
-    { name: 'Theater Chase', duration: '3:15' },
-    { name: 'Fire', duration: '2:00' },
-    { name: 'Confetti', duration: '1:30' },
-    { name: 'Pride', duration: '2:45' },
-    { name: 'Pulse', duration: '1:20' },
-    { name: 'Strobe', duration: '0:50' },
-    { name: 'Breathe', duration: '2:10' },
-    { name: 'Twinkle', duration: '1:40' },
-    { name: 'Meteor', duration: '2:05' },
-    { name: 'Ocean', duration: '2:25' },
-    { name: 'Aurora', duration: '3:05' },
-    { name: 'Scanner', duration: '1:15' },
-    { name: 'Sparkle', duration: '1:10' },
-    { name: 'Wave Sweep', duration: '2:00' },
-  ];
-
-  currentPattern: Pattern | null = null;
+export class PatternPage implements OnInit, OnDestroy {
+  patterns: AnimationPattern[] = [];
+  currentPattern: AnimationPattern | null = null;
   searchText: string = '';
   sortOption: 'name' | 'duration' = 'name';
   private favoriteNames = new Set<string>();
   favoritesOnly = false;
+  isConnected: boolean = false;
+  currentAnimationNumber: number | null = null;
+  private subscriptions: Subscription[] = [];
 
-  get filteredPatterns(): Pattern[] {
+  constructor(
+    private themeService: ThemeService,
+    private animationPatternService: AnimationPatternService,
+    private ledControlService: LedControlService
+  ) {
+    // Load patterns from service
+    this.patterns = this.animationPatternService.getPatterns();
+  }
+
+  async ngOnInit() {
+    // Initialize Firebase connection if not already initialized
+    try {
+      if (!this.ledControlService.getConnectionStatus()) {
+        await this.ledControlService.initializeConnection();
+      }
+    } catch (error) {
+      console.error('Failed to initialize Firebase connection:', error);
+    }
+
+    // Subscribe to connection status
+    const connectionSub = this.ledControlService.connectionStatus$.subscribe(
+      (connected) => {
+        this.isConnected = connected;
+      }
+    );
+    this.subscriptions.push(connectionSub);
+
+    // Subscribe to current animation changes from Firebase
+    const animationSub = this.ledControlService.currentAnimation$.subscribe(
+      (animNumber) => {
+        this.currentAnimationNumber = animNumber;
+        // Update current pattern based on Firebase state
+        if (animNumber === null || animNumber === 0) {
+          this.currentPattern = null;
+        } else {
+          const matchingPattern = this.patterns.find(p => p.animNumber === animNumber);
+          if (matchingPattern) {
+            this.currentPattern = matchingPattern;
+          }
+        }
+      }
+    );
+    this.subscriptions.push(animationSub);
+  }
+
+  ngOnDestroy() {
+    // Unsubscribe from observables
+    this.subscriptions.forEach(sub => sub.unsubscribe());
+  }
+
+  get filteredPatterns(): AnimationPattern[] {
     const q = this.searchText?.toLowerCase().trim();
     let base = this.patterns;
     if (q) {
@@ -63,7 +95,7 @@ export class PatternPage {
     return base;
   }
 
-  get sortedFilteredPatterns(): Pattern[] {
+  get sortedFilteredPatterns(): AnimationPattern[] {
     const base = this.filteredPatterns.slice();
     if (this.sortOption === 'name') {
       base.sort((a, b) => a.name.localeCompare(b.name));
@@ -87,7 +119,7 @@ export class PatternPage {
     if (val === 'name' || val === 'duration') this.sortOption = val;
   }
 
-  toggleFavorite(p: Pattern) {
+  toggleFavorite(p: AnimationPattern) {
     if (this.favoriteNames.has(p.name)) {
       this.favoriteNames.delete(p.name);
     } else {
@@ -95,7 +127,7 @@ export class PatternPage {
     }
   }
 
-  isFavorite(p: Pattern): boolean {
+  isFavorite(p: AnimationPattern): boolean {
     return this.favoriteNames.has(p.name);
   }
 
@@ -103,13 +135,21 @@ export class PatternPage {
     this.favoritesOnly = !!ev?.detail?.checked;
   }
 
-  selectPattern(pattern: Pattern) {
-    if (this.currentPattern?.name === pattern.name) {
-      this.currentPattern = null; // stop
-      console.log('Stopped pattern:', pattern.name);
+  async selectPattern(pattern: AnimationPattern) {
+    if (this.currentPattern?.id === pattern.id) {
+      // Toggle off if same pattern - send stop command to Firebase
+      try {
+        await this.ledControlService.stopAnimation();
+      } catch (error) {
+        console.error('Error stopping animation:', error);
+      }
     } else {
-      this.currentPattern = pattern; // play
-      console.log('Selected pattern:', pattern.name);
+      // Start new pattern - send command to Firebase
+      try {
+        await this.ledControlService.setAnimation(pattern.animNumber);
+      } catch (error) {
+        console.error('Error setting animation:', error);
+      }
     }
   }
 }

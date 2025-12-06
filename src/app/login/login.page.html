@@ -1,0 +1,89 @@
+<ion-content [fullscreen]="true">
+  <div class="page-login">
+    <div class="login-container">
+      <!-- Logo/Brand Section -->
+      <div class="brand-section">
+        <ion-icon name="cube" class="brand-icon"></ion-icon>
+        <h1 class="brand-name">EDUBOX</h1>
+        <p class="brand-tagline">LED Control System</p>
+      </div>
+
+      <!-- Login Form Card -->
+      <div class="login-card">
+        <h2 class="login-title">Welcome Back</h2>
+        <p class="login-subtitle">Sign in to continue</p>
+
+        <form (ngSubmit)="login()">
+          <!-- Email Input -->
+          <ion-item class="input-item">
+            <ion-icon name="mail-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              type="email"
+              placeholder="Email"
+              [(ngModel)]="email"
+              name="email"
+              required
+              [disabled]="isLoading"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Password Input -->
+          <ion-item class="input-item">
+            <ion-icon name="lock-closed-outline" slot="start" class="input-icon"></ion-icon>
+            <ion-input
+              type="password"
+              placeholder="Password"
+              [(ngModel)]="password"
+              name="password"
+              required
+              [disabled]="isLoading"
+            ></ion-input>
+          </ion-item>
+
+          <!-- Forgot Password Link -->
+          <div class="forgot-password-section">
+            <a (click)="forgotPassword()" class="forgot-password-link">Forgot Password?</a>
+          </div>
+
+          <!-- Login Button -->
+          <ion-button
+            expand="block"
+            class="login-btn"
+            type="submit"
+            [disabled]="isLoading"
+          >
+            <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+            <span *ngIf="!isLoading">Login</span>
+          </ion-button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider-section">
+          <div class="divider-line"></div>
+          <span class="divider-text">OR</span>
+          <div class="divider-line"></div>
+        </div>
+
+        <!-- Google Sign-In Button -->
+        <ion-button
+          expand="block"
+          fill="outline"
+          class="google-btn"
+          (click)="loginWithGoogle()"
+          [disabled]="isLoading"
+        >
+          <ion-icon name="logo-google" slot="start"></ion-icon>
+          Continue with Google
+        </ion-button>
+
+        <!-- Sign Up Link -->
+        <div class="signup-section">
+          <p class="signup-text">
+            Don't have an account?
+            <a routerLink="/signup" class="signup-link">Sign Up</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
