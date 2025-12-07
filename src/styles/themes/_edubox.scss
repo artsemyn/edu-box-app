@@ -1,12 +1,109 @@
 // ===================================
-//        EDUBOX THEME PALETTE
+//    EDUBOX NAVY BLUE THEME PALETTE
 // ===================================
-// Yellow/Gold brand color scheme
+// Professional & Technology-focused color scheme
+// Corporate brand identity with clean, modern aesthetics
 
-$edubox-primary: #dcd908;      // Yellow - primary brand color
-$edubox-dark: #2d2d2d;         // Dark gray - primary text
-$edubox-light: #F6FFE8;        // Light cream - backgrounds
-$edubox-border: #dee2e6;       // Border color
-$edubox-text: #6c757d;         // Secondary text gray
-$edubox-success: #28a745;      // Green - success states
-$edubox-danger: #dc3545;       // Red - error/danger states
+// PRIMARY COLORS - Navy Blue (Professional & Technology)
+$edubox-primary: #3474D4;           // Navy Blue - Primary brand color
+$edubox-primary-hover: #2A5CB8;     // Darker navy on hover
+$edubox-primary-light: #5A93E8;     // Light navy variant
+$edubox-primary-dark: #1E4A9C;      // Deep navy variant
+$edubox-primary-rgb: 52, 116, 212;  // RGB for alpha usage
+
+// SECONDARY COLORS - Complementary Navy tones
+$edubox-secondary: #2563EB;         // Bright Blue
+$edubox-secondary-hover: #1D4ED8;   // Darker blue on hover
+$edubox-secondary-light: #60A5FA;   // Sky blue
+$edubox-secondary-rgb: 37, 99, 235;
+
+// ACCENT COLORS - Mint Green (Success & Positive)
+$edubox-accent: #5ACB5E;            // Mint Green - Success states
+$edubox-accent-hover: #4AB84E;      // Darker mint on hover
+$edubox-accent-light: #7FD982;      // Light mint variant
+
+// HIGHLIGHT COLORS - Bright Yellow (Warning/Attention)
+$edubox-highlight: #FFC107;         // Bright Yellow - Highlights
+$edubox-highlight-hover: #FFB300;   // Darker yellow on hover
+$edubox-highlight-light: #FFD54F;   // Light yellow variant
+
+// SEMANTIC COLORS - Status indicators
+$edubox-success: #5ACB5E;           // Mint Green - Success states
+$edubox-success-light: #7FD982;     // Light mint
+$edubox-danger: #EF4444;            // Red - Error/Danger
+$edubox-danger-light: #F87171;      // Light red
+$edubox-warning: #FFC107;           // Bright Yellow - Warnings
+$edubox-warning-light: #FFD54F;     // Light yellow
+$edubox-info: #3474D4;              // Navy Blue - Information
+$edubox-info-light: #5A93E8;        // Light navy
+
+// NEUTRAL COLORS - Clean & Professional grays
+$edubox-dark: #1A202C;              // Almost black - Primary text
+$edubox-gray-900: #1A202C;          // Darkest gray
+$edubox-gray-800: #2D3748;          // Very dark gray
+$edubox-gray-700: #4A5568;          // Dark gray
+$edubox-gray-600: #718096;          // Medium-dark gray
+$edubox-gray-500: #A0AEC0;          // Medium gray - Secondary text
+$edubox-gray-400: #CBD5E0;          // Light-medium gray
+$edubox-gray-300: #E2E8F0;          // Light gray - Borders
+$edubox-gray-200: #EDF2F7;          // Very light gray
+$edubox-gray-100: #F7FAFC;          // Almost white
+$edubox-gray-50: #F5F7F9;           // Light blue-gray - Secondary background
+
+// BACKGROUND COLORS - Clean white & subtle grays
+$edubox-bg-primary: #FFFFFF;        // Pure white - Main background
+$edubox-bg-secondary: #F5F7F9;      // Light blue-gray - Secondary background
+$edubox-bg-tertiary: #EDF2F7;       // Very light gray - Tertiary background
+
+// SURFACE COLORS
+$edubox-surface: #FFFFFF;           // Card/Paper surfaces
+$edubox-surface-elevated: #FFFFFF;  // Elevated surfaces (modals, popovers)
+
+// TEXT COLORS - High contrast for readability
+$edubox-text-primary: #1A202C;      // Almost black - Primary text
+$edubox-text-secondary: #718096;    // Medium-dark gray - Secondary text
+$edubox-text-tertiary: #A0AEC0;     // Medium gray - Tertiary text
+$edubox-text-disabled: #CBD5E0;     // Light-medium gray - Disabled text
+
+// BORDER COLORS - Subtle separators
+$edubox-border: #E2E8F0;            // Light gray - Default borders
+$edubox-border-light: #EDF2F7;      // Very light gray - Light borders
+$edubox-border-dark: #CBD5E0;       // Light-medium gray - Strong borders
+
+// LEGACY COMPATIBILITY
+$edubox-light: #F5F7F9;             // Keep for backward compatibility
+$edubox-text: #718096;              // Keep for backward compatibility
+
+// GRADIENTS - Modern & Professional
+$gradient-primary: linear-gradient(135deg, $edubox-primary 0%, $edubox-secondary 100%);
+$gradient-accent: linear-gradient(135deg, $edubox-accent 0%, #34D399 100%);
+$gradient-highlight: linear-gradient(135deg, $edubox-highlight 0%, #F59E0B 100%);
+$gradient-cool: linear-gradient(135deg, $edubox-info 0%, $edubox-primary 100%);
+$gradient-navy: linear-gradient(135deg, #1E4A9C 0%, $edubox-primary 50%, $edubox-secondary 100%);
+
+// SHADOWS - Material Design inspired with navy tint
+$shadow-xs: 0 1px 2px 0 rgba(52, 116, 212, 0.05);
+$shadow-sm: 0 1px 3px 0 rgba(52, 116, 212, 0.1), 0 1px 2px -1px rgba(52, 116, 212, 0.1);
+$shadow-md: 0 4px 6px -1px rgba(52, 116, 212, 0.1), 0 2px 4px -2px rgba(52, 116, 212, 0.1);
+$shadow-lg: 0 10px 15px -3px rgba(52, 116, 212, 0.1), 0 4px 6px -4px rgba(52, 116, 212, 0.1);
+$shadow-xl: 0 20px 25px -5px rgba(52, 116, 212, 0.1), 0 8px 10px -6px rgba(52, 116, 212, 0.1);
+$shadow-2xl: 0 25px 50px -12px rgba(52, 116, 212, 0.25);
+$shadow-inner: inset 0 2px 4px 0 rgba(52, 116, 212, 0.05);
+
+// ELEVATION - For layering with navy blue tint
+$elevation-0: 0;
+$elevation-1: 0 1px 3px rgba(52, 116, 212, 0.12), 0 1px 2px rgba(52, 116, 212, 0.24);
+$elevation-2: 0 3px 6px rgba(52, 116, 212, 0.16), 0 3px 6px rgba(52, 116, 212, 0.23);
+$elevation-3: 0 10px 20px rgba(52, 116, 212, 0.19), 0 6px 6px rgba(52, 116, 212, 0.23);
+$elevation-4: 0 14px 28px rgba(52, 116, 212, 0.25), 0 10px 10px rgba(52, 116, 212, 0.22);
+$elevation-5: 0 19px 38px rgba(52, 116, 212, 0.30), 0 15px 12px rgba(52, 116, 212, 0.22);
+
+// OVERLAY COLORS - For modals and overlays
+$overlay-light: rgba(245, 247, 249, 0.9);   // Light overlay
+$overlay-dark: rgba(26, 32, 44, 0.75);      // Dark overlay
+$overlay-navy: rgba(52, 116, 212, 0.1);     // Navy tint overlay
+
+// BRAND-SPECIFIC COLORS
+$brand-navy-gradient: linear-gradient(135deg, #1E4A9C 0%, #3474D4 50%, #2563EB 100%);
+$brand-success-gradient: linear-gradient(135deg, #5ACB5E 0%, #34D399 100%);
+$brand-highlight-gradient: linear-gradient(135deg, #FFC107 0%, #F59E0B 100%);

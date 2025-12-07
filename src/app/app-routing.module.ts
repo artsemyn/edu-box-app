@@ -47,10 +47,16 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'iot-ai-module',
+    loadChildren: () => import('./iot-ai-module/iot-ai-module.module').then( m => m.IotAiModulePageModule),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'
   }
+
 ];
 
 @NgModule({

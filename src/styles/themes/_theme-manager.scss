@@ -1,67 +1,246 @@
 // ===================================
 //    CSS CUSTOM PROPERTIES MANAGER
 // ===================================
-// Enables dynamic theme switching at runtime
+// Navy Blue professional theme system with CSS variables
 
 :root {
-  // Default to EDUBOX theme (Light Mode)
+  // PRIMARY COLORS - Navy Blue professional theme
   --theme-primary: #{$edubox-primary};
-  --theme-dark: #{$edubox-dark};
-  --theme-light: #{$edubox-light};
-  --theme-border: #{$edubox-border};
-  --theme-text: #{$edubox-text};
-  --theme-success: #{$edubox-success};
-  --theme-danger: #{$edubox-danger};
+  --theme-primary-hover: #{$edubox-primary-hover};
+  --theme-primary-light: #{$edubox-primary-light};
+  --theme-primary-dark: #{$edubox-primary-dark};
+  --theme-primary-rgb: #{$edubox-primary-rgb};
 
-  // Light mode specific colors
-  --theme-bg: #F6FFE8;
-  --theme-content-bg: #F6FFE8;
-  --theme-card-bg: #ffffff;
-  --theme-main-text: #000000;
-  --theme-secondary-text: #6c757d;
+  // SECONDARY & ACCENT COLORS
+  --theme-secondary: #{$edubox-secondary};
+  --theme-secondary-hover: #{$edubox-secondary-hover};
+  --theme-secondary-light: #{$edubox-secondary-light};
+  --theme-secondary-rgb: #{$edubox-secondary-rgb};
+  --theme-accent: #{$edubox-accent};
+  --theme-accent-hover: #{$edubox-accent-hover};
+
+  // HIGHLIGHT COLORS - Bright Yellow
+  --theme-highlight: #{$edubox-highlight};
+  --theme-highlight-hover: #{$edubox-highlight-hover};
+  --theme-highlight-light: #{$edubox-highlight-light};
+
+  // SEMANTIC COLORS - Status indicators
+  --theme-success: #{$edubox-success};
+  --theme-success-light: #{$edubox-success-light};
+  --theme-danger: #{$edubox-danger};
+  --theme-danger-light: #{$edubox-danger-light};
+  --theme-warning: #{$edubox-warning};
+  --theme-warning-light: #{$edubox-warning-light};
+  --theme-info: #{$edubox-info};
+  --theme-info-light: #{$edubox-info-light};
+
+  // NEUTRAL COLORS - Clean professional grays
+  --theme-dark: #{$edubox-dark};
+  --theme-gray-900: #{$edubox-gray-900};
+  --theme-gray-800: #{$edubox-gray-800};
+  --theme-gray-700: #{$edubox-gray-700};
+  --theme-gray-600: #{$edubox-gray-600};
+  --theme-gray-500: #{$edubox-gray-500};
+  --theme-gray-400: #{$edubox-gray-400};
+  --theme-gray-300: #{$edubox-gray-300};
+  --theme-gray-200: #{$edubox-gray-200};
+  --theme-gray-100: #{$edubox-gray-100};
+  --theme-gray-50: #{$edubox-gray-50};
+
+  // BACKGROUND COLORS - Clean white & light blue-gray
+  --theme-bg: #{$edubox-bg-primary};
+  --theme-bg-secondary: #{$edubox-bg-secondary};
+  --theme-bg-tertiary: #{$edubox-bg-tertiary};
+  --theme-content-bg: #{$edubox-bg-secondary};
+  --theme-card-bg: #{$edubox-surface};
+  --theme-surface: #{$edubox-surface};
+  --theme-surface-elevated: #{$edubox-surface-elevated};
+
+  // TEXT COLORS - High contrast for readability
+  --theme-main-text: #{$edubox-text-primary};
+  --theme-secondary-text: #{$edubox-text-secondary};
+  --theme-tertiary-text: #{$edubox-text-tertiary};
+  --theme-text-disabled: #{$edubox-text-disabled};
+
+  // BORDER COLORS - Subtle separators
+  --theme-border: #{$edubox-border};
+  --theme-border-light: #{$edubox-border-light};
+  --theme-border-dark: #{$edubox-border-dark};
+
+  // LEGACY COMPATIBILITY
+  --theme-light: #{$edubox-light};
+  --theme-text: #{$edubox-text};
 }
 
-// EDUBOX theme class (Light Mode)
+// EDUBOX theme class (Light Mode) - Navy Blue professional theme
 body.theme-edubox {
+  // PRIMARY COLORS
   --theme-primary: #{$edubox-primary};
-  --theme-dark: #{$edubox-dark};
-  --theme-light: #{$edubox-light};
-  --theme-border: #{$edubox-border};
-  --theme-text: #{$edubox-text};
+  --theme-primary-hover: #{$edubox-primary-hover};
+  --theme-primary-light: #{$edubox-primary-light};
+  --theme-primary-dark: #{$edubox-primary-dark};
+  --theme-primary-rgb: #{$edubox-primary-rgb};
+
+  // SECONDARY & ACCENT
+  --theme-secondary: #{$edubox-secondary};
+  --theme-secondary-hover: #{$edubox-secondary-hover};
+  --theme-secondary-light: #{$edubox-secondary-light};
+  --theme-secondary-rgb: #{$edubox-secondary-rgb};
+  --theme-accent: #{$edubox-accent};
+  --theme-highlight: #{$edubox-highlight};
+
+  // SEMANTIC COLORS
   --theme-success: #{$edubox-success};
   --theme-danger: #{$edubox-danger};
+  --theme-warning: #{$edubox-warning};
+  --theme-info: #{$edubox-info};
 
-  // Light mode colors
-  --theme-bg: #F6FFE8;
-  --theme-content-bg: #F6FFE8;
-  --theme-card-bg: #ffffff;
-  --theme-main-text: #000000;
-  --theme-secondary-text: #6c757d;
+  // NEUTRAL COLORS
+  --theme-dark: #{$edubox-dark};
+  --theme-gray-500: #{$edubox-gray-500};
+  --theme-gray-300: #{$edubox-gray-300};
+
+  // BACKGROUNDS - Clean white & light blue-gray
+  --theme-bg: #{$edubox-bg-primary};
+  --theme-bg-secondary: #{$edubox-bg-secondary};
+  --theme-content-bg: #{$edubox-bg-secondary};
+  --theme-card-bg: #{$edubox-surface};
+
+  // TEXT - High contrast for readability
+  --theme-main-text: #{$edubox-text-primary};
+  --theme-secondary-text: #{$edubox-text-secondary};
+  --theme-tertiary-text: #{$edubox-text-tertiary};
+
+  // BORDERS - Subtle separators
+  --theme-border: #{$edubox-border};
+  --theme-border-light: #{$edubox-border-light};
+
+  // LEGACY
+  --theme-light: #{$edubox-light};
+  --theme-text: #{$edubox-text};
 }
 
 // ===================================
-//         DARK MODE OVERRIDE
+//         DARK MODE THEME
 // ===================================
-// Dark mode works with EDUBOX theme
+// Modern dark theme with Navy Blue accents
 
 body.dark-mode {
-  // Dark mode backgrounds
-  --theme-bg: #1a1a1a;
-  --theme-content-bg: #121212;
-  --theme-card-bg: #2d2d2d;
-  --theme-main-text: #ffffff;
-  --theme-secondary-text: #b0b0b0;
+  // BACKGROUNDS - Dark navy surfaces
+  --theme-bg: #0A1929;                    // Deep navy - Main background
+  --theme-bg-secondary: #132F4C;          // Navy 800 - Secondary background
+  --theme-bg-tertiary: #1E4976;           // Navy 700 - Tertiary background
+  --theme-content-bg: #132F4C;            // Navy 800
+  --theme-card-bg: #132F4C;               // Navy 800 - Cards
+  --theme-surface: #132F4C;               // Navy 800
+  --theme-surface-elevated: #1E4976;      // Navy 700 - Modals/Popovers
 
-  // Remap legacy variables for dark mode
-  --theme-dark: #ffffff;
-  --theme-text: #b0b0b0;
+  // TEXT - Light colors for dark backgrounds
+  --theme-main-text: #F0F4F8;             // Almost white - Primary text
+  --theme-secondary-text: #B0BEC5;        // Blue-gray - Secondary text
+  --theme-tertiary-text: #78909C;         // Medium blue-gray - Tertiary text
+  --theme-text-disabled: #546E7A;         // Dark blue-gray - Disabled
 
-  // Adjust borders and UI elements for dark mode
-  --theme-border: #404040;
-  --theme-light: #3d3d3d;
+  // NEUTRAL COLORS - Inverted for dark mode
+  --theme-dark: #F0F4F8;                  // Inverted
+  --theme-gray-900: #ECEFF1;              // Light
+  --theme-gray-800: #CFD8DC;              // Light-medium
+  --theme-gray-700: #B0BEC5;              // Medium
+  --theme-gray-600: #90A4AE;              // Medium-dark
+  --theme-gray-500: #78909C;              // Dark
+  --theme-gray-400: #607D8B;              // Darker
+  --theme-gray-300: #455A64;              // Very dark
+  --theme-gray-200: #37474F;              // Almost black
+  --theme-gray-100: #263238;              // Deep dark
+  --theme-gray-50: #1C2833;               // Deepest
 
-  // Keep theme-specific primary colors but adjust for dark background visibility
-  &.theme-edubox {
-    --theme-primary: #{lighten($edubox-primary, 5%)};
-  }
+  // BORDERS - Lighter for dark backgrounds
+  --theme-border: #1E4976;                // Navy 700
+  --theme-border-light: #132F4C;          // Navy 800
+  --theme-border-dark: #2E5C8A;           // Navy 600
+
+  // PRIMARY COLORS - Brighter variants for dark mode visibility
+  --theme-primary: #{$edubox-primary-light};
+  --theme-primary-hover: #{$edubox-primary};
+  --theme-primary-light: #7EADFF;         // Extra light navy
+  --theme-primary-dark: #{$edubox-primary-dark};
+
+  // SECONDARY COLORS - Brighter variants
+  --theme-secondary: #{$edubox-secondary-light};
+  --theme-secondary-hover: #{$edubox-secondary};
+  --theme-secondary-light: #93C5FD;       // Sky blue
+
+  // ACCENT - Brighter mint green
+  --theme-accent: #{$edubox-accent-light};
+  --theme-accent-hover: #{$edubox-accent};
+
+  // HIGHLIGHT - Brighter yellow
+  --theme-highlight: #{$edubox-highlight};
+  --theme-highlight-hover: #{$edubox-highlight-hover};
+
+  // SEMANTIC COLORS - Adjusted for dark backgrounds
+  --theme-success: #{$edubox-success-light};
+  --theme-success-light: #A8E6A3;         // Extra light mint
+  --theme-danger: #{$edubox-danger-light};
+  --theme-danger-light: #FCA5A5;          // Light red
+  --theme-warning: #{$edubox-warning-light};
+  --theme-warning-light: #FFE082;         // Light yellow
+  --theme-info: #{$edubox-info-light};
+  --theme-info-light: #7EADFF;            // Light navy
+
+  // LEGACY COMPATIBILITY
+  --theme-light: #1E4976;                 // Navy 700
+  --theme-text: #B0BEC5;                  // Blue-gray
+}
+
+// DARK MODE + EDUBOX THEME COMBINATION
+body.dark-mode.theme-edubox {
+  // Inherits from dark-mode above
+  // Navy-specific dark mode adjustments can go here
+}
+
+// ===================================
+//      THEME TRANSITION EFFECTS
+// ===================================
+// Smooth transition when switching themes
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+// Ensure smooth transitions for theme-dependent elements
+* {
+  transition-property: background-color, border-color, color, fill, stroke;
+  transition-duration: 0.2s;
+  transition-timing-function: ease-in-out;
+}
+
+// Exclude specific elements from transitions to avoid performance issues
+.no-transition,
+.no-transition * {
+  transition: none !important;
+}
+
+// ===================================
+//      THEME-SPECIFIC UTILITIES
+// ===================================
+
+// Navy Blue gradient backgrounds
+.bg-navy-gradient {
+  background: $brand-navy-gradient;
+}
+
+.bg-success-gradient {
+  background: $brand-success-gradient;
+}
+
+.bg-highlight-gradient {
+  background: $brand-highlight-gradient;
+}
+
+// Text gradients
+.text-navy-gradient {
+  background: $gradient-primary;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }

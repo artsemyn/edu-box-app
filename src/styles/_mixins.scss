@@ -2,6 +2,8 @@
 //         REUSABLE MIXINS
 // ===================================
 
+@import './variables';
+
 // Responsive Mixins
 @mixin mobile-only {
   @media (max-width: #{$breakpoint-desktop - 1px}) {

@@ -68,11 +68,22 @@ ion-tab-button {
   ion-icon {
     font-size: 1.5em;
     color: var(--theme-secondary-text);
+    transition: color 0.3s ease;
   }
 
   ion-label {
     font-size: 0.75em;
     color: var(--theme-secondary-text);
+    transition: color 0.3s ease;
+  }
+
+  // Hover effect
+  &:hover:not(.active-tab) {
+    ion-icon,
+    ion-label {
+      color: var(--theme-primary);
+      opacity: 0.8;
+    }
   }
 
   &.active-tab {
@@ -98,6 +109,13 @@ ion-tab-button {
         font-weight: 600;
         color: #000000;
       }
+    }
+  }
+
+  // Icon rocket khusus untuk IoT & AI module
+  &[tab="iot-ai-module"] {
+    ion-icon {
+      // Icon rocket outline
     }
   }
 }
