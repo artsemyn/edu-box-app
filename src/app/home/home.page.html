@@ -4,6 +4,14 @@
       <ion-icon [name]="headerIcon" class="header-logo"></ion-icon>
       <span class="text-primary">{{ themeName }}</span>
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/learning" class="learning-button">
+        <ion-icon name="school-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+      <ion-button routerLink="/profile" class="profile-button">
+        <ion-icon name="person-circle-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
@@ -107,6 +115,12 @@
     <ion-tab-button tab="pattern" routerLink="/pattern">
       <ion-icon name="play-outline"></ion-icon>
       <ion-label>Patterns</ion-label>
+    </ion-tab-button>
+
+    <!-- Learning = /learning -->
+    <ion-tab-button tab="learning" routerLink="/learning">
+      <ion-icon name="school-outline"></ion-icon>
+      <ion-label>Learning</ion-label>
     </ion-tab-button>
 
     <!-- System = /settings -->

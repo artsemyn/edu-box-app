@@ -7,6 +7,7 @@ export interface AnimationPattern {
   frameRate: number;
   animNumber: number; // Firebase animation ID (1-10, 0 = stop)
   generateFrame: (frameIndex: number) => boolean[];
+  jsonCode?: string; // JSON code required to play this animation
 }
 
 @Injectable({
@@ -35,6 +36,7 @@ export class AnimationPatternService {
         duration: '2:00',
         frameRate: 150,
         animNumber: 1,
+        jsonCode: '{"animation":1,"type":"diagonal-bounce","version":"1.0"}',
         generateFrame: this.generateDiagonalBounce.bind(this)
       },
       {
@@ -43,6 +45,7 @@ export class AnimationPatternService {
         duration: '2:30',
         frameRate: 200,
         animNumber: 2,
+        jsonCode: '{"animation":2,"type":"box-rotate","version":"1.0"}',
         generateFrame: this.generateBoxRotate.bind(this)
       },
       {
@@ -51,6 +54,7 @@ export class AnimationPatternService {
         duration: '2:15',
         frameRate: 150,
         animNumber: 3,
+        jsonCode: '{"animation":3,"type":"wave","version":"1.0"}',
         generateFrame: this.generateWave.bind(this)
       },
       {
@@ -59,6 +63,7 @@ export class AnimationPatternService {
         duration: '1:45',
         frameRate: 300,
         animNumber: 4,
+        jsonCode: '{"animation":4,"type":"heartbeat","version":"1.0"}',
         generateFrame: this.generateHeartbeat.bind(this)
       },
       {
@@ -67,6 +72,7 @@ export class AnimationPatternService {
         duration: '2:00',
         frameRate: 250,
         animNumber: 5,
+        jsonCode: '{"animation":5,"type":"checker","version":"1.0"}',
         generateFrame: this.generateChecker.bind(this)
       },
       {
@@ -75,6 +81,7 @@ export class AnimationPatternService {
         duration: '3:00',
         frameRate: 200,
         animNumber: 6,
+        jsonCode: '{"animation":6,"type":"spiral","version":"1.0"}',
         generateFrame: this.generateSpiral.bind(this)
       },
       {
@@ -83,6 +90,7 @@ export class AnimationPatternService {
         duration: '2:30',
         frameRate: 100,
         animNumber: 7,
+        jsonCode: '{"animation":7,"type":"rain","version":"1.0"}',
         generateFrame: this.generateRain.bind(this)
       },
       {
@@ -91,6 +99,7 @@ export class AnimationPatternService {
         duration: '1:30',
         frameRate: 200,
         animNumber: 8,
+        jsonCode: '{"animation":8,"type":"cross","version":"1.0"}',
         generateFrame: this.generateCross.bind(this)
       },
       {
@@ -99,6 +108,7 @@ export class AnimationPatternService {
         duration: '2:45',
         frameRate: 150,
         animNumber: 9,
+        jsonCode: '{"animation":9,"type":"border-chase","version":"1.0"}',
         generateFrame: this.generateBorderChase.bind(this)
       },
       {
@@ -107,6 +117,7 @@ export class AnimationPatternService {
         duration: '1:00',
         frameRate: 500,
         animNumber: 10,
+        jsonCode: '{"animation":10,"type":"blink-all","version":"1.0"}',
         generateFrame: this.generateBlinkAll.bind(this)
       }
     ];

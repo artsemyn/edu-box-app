@@ -32,6 +32,21 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'profile',
+    loadChildren: () => import('./profile/profile.module').then(m => m.ProfilePageModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'profile-settings',
+    loadChildren: () => import('./profile-settings/profile-settings.module').then(m => m.ProfileSettingsPageModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'learning',
+    loadChildren: () => import('./learning/learning.module').then(m => m.LearningPageModule),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'

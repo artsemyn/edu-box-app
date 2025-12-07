@@ -56,3 +56,61 @@ ion-header {
   color: var(--theme-primary);
   @include smooth-transition(color, 0.3s);
 }
+
+// Learning button in header
+.learning-button {
+  --color: var(--theme-main-text);
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin-right: 4px;
+  
+  ion-icon {
+    font-size: 1.8rem;
+    color: var(--ion-color-warning);
+    @include smooth-transition(color, 0.3s);
+  }
+
+  &:hover {
+    --color: var(--ion-color-warning);
+    
+    ion-icon {
+      color: var(--ion-color-warning);
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    ion-icon {
+      transform: scale(0.95);
+    }
+  }
+}
+
+// Profile button in header
+.profile-button {
+  --color: var(--theme-main-text);
+  --padding-start: 8px;
+  --padding-end: 8px;
+  margin-right: 8px;
+  
+  ion-icon {
+    font-size: 1.8rem;
+    color: var(--theme-primary);
+    @include smooth-transition(color, 0.3s);
+  }
+
+  &:hover {
+    --color: var(--theme-primary);
+    
+    ion-icon {
+      color: var(--theme-primary);
+      transform: scale(1.1);
+    }
+  }
+
+  &:active {
+    ion-icon {
+      transform: scale(0.95);
+    }
+  }
+}

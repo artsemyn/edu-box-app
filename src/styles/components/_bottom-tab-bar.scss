@@ -76,12 +76,12 @@ ion-tab-button {
   }
 
   &.active-tab {
-    flex: 1.2;
+    flex: 1.15;
 
     .tab-active-bg {
       background: var(--theme-primary);
       color: #000000;
-      width: 80%;
+      width: 75%;
       height: 55px;
       border-radius: $border-radius-md;
       @include flex-center;

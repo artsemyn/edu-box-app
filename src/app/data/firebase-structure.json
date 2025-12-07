@@ -1,0 +1,107 @@
+{
+  "firebaseDatabaseStructure": {
+    "ledMatrix": {
+      "animation": 0,
+      "shiftVersion": 1,
+      "currentAnimation": {
+        "animNumber": 0,
+        "animationId": "",
+        "animationName": "",
+        "isPlaying": false,
+        "startedAt": 0,
+        "userId": ""
+      },
+      "customPattern": {
+        "enabled": false,
+        "frames": []
+      }
+    }
+  },
+  "animationValues": {
+    "0": "Stop / Turn off all animations",
+    "1": "Diagonal Bounce",
+    "2": "Box Rotate",
+    "3": "Wave",
+    "4": "Heartbeat",
+    "5": "Checker",
+    "6": "Spiral",
+    "7": "Rain",
+    "8": "Cross",
+    "9": "Border Chase",
+    "10": "Blink All",
+    "11": "Custom Pattern (load from customPattern)",
+    "12": "LED Test Mode",
+    "13": "Row Test Mode",
+    "14": "Column Test Mode"
+  },
+  "exampleFirebaseData": {
+    "ledMatrix": {
+      "animation": 1,
+      "shiftVersion": 1,
+      "currentAnimation": {
+        "animNumber": 1,
+        "animationId": "diagonal-bounce",
+        "animationName": "Diagonal Bounce",
+        "isPlaying": true,
+        "startedAt": 1703123456789,
+        "userId": "anonymous-user-123"
+      }
+    }
+  },
+  "customPatternExample": {
+    "ledMatrix": {
+      "animation": 11,
+      "shiftVersion": 1,
+      "customPattern": {
+        "enabled": true,
+        "frames": [
+          {
+            "frameIndex": 0,
+            "matrix": [
+              [1, 1, 1, 1, 1, 1],
+              [1, 0, 0, 0, 0, 1],
+              [1, 0, 0, 0, 0, 1],
+              [1, 0, 0, 0, 0, 1],
+              [1, 0, 0, 0, 0, 1],
+              [1, 1, 1, 1, 1, 1]
+            ]
+          },
+          {
+            "frameIndex": 1,
+            "matrix": [
+              [0, 0, 0, 0, 0, 0],
+              [0, 1, 1, 1, 1, 0],
+              [0, 1, 0, 0, 1, 0],
+              [0, 1, 0, 0, 1, 0],
+              [0, 1, 1, 1, 1, 0],
+              [0, 0, 0, 0, 0, 0]
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "apiEndpoints": {
+    "setAnimation": {
+      "path": "/ledMatrix/animation",
+      "method": "SET",
+      "valueType": "integer",
+      "range": "0-14"
+    },
+    "setShiftVersion": {
+      "path": "/ledMatrix/shiftVersion",
+      "method": "SET",
+      "valueType": "integer",
+      "range": "1-4"
+    },
+    "setCustomPattern": {
+      "path": "/ledMatrix/customPattern",
+      "method": "SET",
+      "valueType": "object",
+      "structure": {
+        "enabled": "boolean",
+        "frames": "array of frame objects"
+      }
+    }
+  }
+}

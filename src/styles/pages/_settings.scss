@@ -66,6 +66,13 @@
       --border-color: var(--theme-primary);
       --color: var(--theme-primary);
       font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .edit-profile-btn-secondary {
+      --color: var(--theme-primary);
+      font-weight: 500;
+      font-size: 0.9rem;
     }
   }
 

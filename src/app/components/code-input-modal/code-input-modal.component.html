@@ -1,0 +1,86 @@
+  <ion-header>
+  <ion-toolbar>
+    <ion-title>Input Kode JSON</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="cancel()" [disabled]="isLoading">
+        <ion-icon name="close" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="code-input-container">
+    <div class="header-section">
+      <ion-icon name="lock-closed-outline" class="lock-icon"></ion-icon>
+      <h2 *ngIf="animationPattern">Kode JSON untuk {{ animationPattern.name }}</h2>
+      <h2 *ngIf="!animationPattern">Kode Akses Animasi</h2>
+      <p class="subtitle">Masukkan kode JSON untuk memainkan animasi ini</p>
+      <p class="subtitle-info" *ngIf="animationPattern">
+        <small>ID Animasi: {{ animationPattern.id }} | Nomor: {{ animationPattern.animNumber }}</small>
+      </p>
+    </div>
+
+    <div class="input-section">
+      <!-- JSON Code Input -->
+      <div class="code-input-wrapper">
+        <ion-label class="input-label">
+          {{ animationPattern ? 'Input JSON Code' : 'Access Code' }}
+        </ion-label>
+        <ion-textarea
+          *ngIf="animationPattern"
+          [(ngModel)]="jsonCode"
+          placeholder='{"animation":1,"type":"diagonal-bounce","version":"1.0"}'
+          [disabled]="isLoading || isLocked"
+          rows="6"
+          class="code-input json-input">
+        </ion-textarea>
+        <ion-input
+          *ngIf="!animationPattern"
+          type="text"
+          [(ngModel)]="code"
+          placeholder="Enter code"
+          [disabled]="isLoading || isLocked"
+          (keypress)="onKeyPress($event)"
+          autocomplete="off"
+          autocapitalize="characters"
+          class="code-input">
+        </ion-input>
+        <div class="input-hint" *ngIf="animationPattern">
+          <ion-icon name="information-circle-outline"></ion-icon>
+          <ion-text color="medium">
+            <small>Masukkan kode JSON dengan format yang benar. Contoh ada di dokumentasi.</small>
+          </ion-text>
+        </div>
+      </div>
+
+      <div class="attempts-info" *ngIf="attempts > 0 && !isLocked">
+        <ion-text color="warning">
+          <small>Percobaan: {{ attempts }}/{{ maxAttempts }}</small>
+        </ion-text>
+      </div>
+
+      <div class="locked-message" *ngIf="isLocked">
+        <ion-icon name="alert-circle-outline"></ion-icon>
+        <ion-text color="danger">
+          <small>Terlalu banyak percobaan gagal. Silakan tunggu 30 detik.</small>
+        </ion-text>
+      </div>
+
+      <ion-button
+        expand="block"
+        class="validate-btn"
+        (click)="validateCode()"
+        [disabled]="isLoading || isLocked || (animationPattern ? !jsonCode.trim() : !code.trim())">
+        <ion-spinner *ngIf="isLoading" name="crescent"></ion-spinner>
+        <span *ngIf="!isLoading">Validasi Kode JSON</span>
+      </ion-button>
+    </div>
+
+    <div class="info-section">
+      <ion-text color="medium">
+        <small>Anda perlu memasukkan kode JSON yang valid untuk memainkan animasi.</small>
+      </ion-text>
+    </div>
+  </div>
+</ion-content>

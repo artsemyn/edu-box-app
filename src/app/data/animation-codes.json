@@ -1,0 +1,54 @@
+{
+  "animationCodes": [
+    {
+      "animationId": "diagonal-bounce",
+      "animationNumber": 1,
+      "jsonCode": "{\"animation\":1,\"type\":\"diagonal-bounce\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "box-rotate",
+      "animationNumber": 2,
+      "jsonCode": "{\"animation\":2,\"type\":\"box-rotate\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "wave",
+      "animationNumber": 3,
+      "jsonCode": "{\"animation\":3,\"type\":\"wave\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "heartbeat",
+      "animationNumber": 4,
+      "jsonCode": "{\"animation\":4,\"type\":\"heartbeat\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "checker",
+      "animationNumber": 5,
+      "jsonCode": "{\"animation\":5,\"type\":\"checker\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "spiral",
+      "animationNumber": 6,
+      "jsonCode": "{\"animation\":6,\"type\":\"spiral\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "rain",
+      "animationNumber": 7,
+      "jsonCode": "{\"animation\":7,\"type\":\"rain\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "cross",
+      "animationNumber": 8,
+      "jsonCode": "{\"animation\":8,\"type\":\"cross\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "border-chase",
+      "animationNumber": 9,
+      "jsonCode": "{\"animation\":9,\"type\":\"border-chase\",\"version\":\"1.0\"}"
+    },
+    {
+      "animationId": "blink-all",
+      "animationNumber": 10,
+      "jsonCode": "{\"animation\":10,\"type\":\"blink-all\",\"version\":\"1.0\"}"
+    }
+  ]
+}

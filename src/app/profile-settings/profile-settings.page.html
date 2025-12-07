@@ -1,0 +1,158 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/profile"></ion-back-button>
+    </ion-buttons>
+    <ion-title class="header-title">Profile Settings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+  <div class="page-profile-settings">
+
+    <!-- Display Name Section -->
+    <div class="settings-section">
+      <p class="section-title">Display Name</p>
+      <div class="settings-card ion-padding">
+        <div class="form-group">
+          <ion-label position="stacked">Name</ion-label>
+          <ion-input
+            type="text"
+            [(ngModel)]="newName"
+            placeholder="Enter your name"
+            class="custom-input">
+          </ion-input>
+        </div>
+        <ion-button
+          expand="block"
+          class="save-btn"
+          (click)="updateDisplayName()"
+          [disabled]="isUpdatingName || newName === userName || !newName.trim()">
+          <ion-spinner *ngIf="isUpdatingName" name="crescent"></ion-spinner>
+          <span *ngIf="!isUpdatingName">Save Changes</span>
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Password Section -->
+    <div class="settings-section">
+      <p class="section-title">Password</p>
+      <div class="settings-card ion-padding">
+        <div class="form-group">
+          <ion-label position="stacked">Current Password</ion-label>
+          <ion-input
+            type="password"
+            [(ngModel)]="currentPassword"
+            placeholder="Enter current password"
+            class="custom-input">
+          </ion-input>
+        </div>
+        <div class="form-group">
+          <ion-label position="stacked">New Password</ion-label>
+          <ion-input
+            type="password"
+            [(ngModel)]="newPassword"
+            placeholder="Enter new password"
+            class="custom-input">
+          </ion-input>
+        </div>
+        <div class="form-group">
+          <ion-label position="stacked">Confirm New Password</ion-label>
+          <ion-input
+            type="password"
+            [(ngModel)]="confirmPassword"
+            placeholder="Confirm new password"
+            class="custom-input">
+          </ion-input>
+        </div>
+        <ion-button
+          expand="block"
+          fill="outline"
+          class="change-password-btn"
+          (click)="changePassword()"
+          [disabled]="isChangingPassword || !currentPassword || !newPassword || !confirmPassword">
+          <ion-spinner *ngIf="isChangingPassword" name="crescent"></ion-spinner>
+          <span *ngIf="!isChangingPassword">Change Password</span>
+        </ion-button>
+        <div class="divider">
+          <span>OR</span>
+        </div>
+        <ion-button
+          expand="block"
+          fill="clear"
+          class="reset-password-btn"
+          (click)="resetPasswordViaEmail()"
+          [disabled]="isChangingPassword">
+          <ion-icon name="mail-outline" slot="start"></ion-icon>
+          Send Reset Email
+        </ion-button>
+      </div>
+    </div>
+
+    <!-- Account Section -->
+    <div class="settings-section">
+      <p class="section-title">Account</p>
+      <div class="settings-card ion-padding">
+        <div class="account-info-item">
+          <div class="info-content">
+            <label class="info-label">Email</label>
+            <p class="info-value">{{ userEmail }}</p>
+            <p class="info-note">Email cannot be changed</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Danger Zone -->
+    <div class="settings-section">
+      <p class="section-title danger-title">Danger Zone</p>
+      <div class="settings-card ion-padding">
+        <div class="danger-zone-item">
+          <div class="danger-content">
+            <h4>Delete Account</h4>
+            <p>Permanently delete your account and all associated data</p>
+          </div>
+          <ion-button
+            fill="outline"
+            color="danger"
+            class="delete-account-btn"
+            (click)="confirmDeleteAccount()">
+            Delete Account
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.page-profile-settings -->
+</ion-content>
+
+<!-- Footer Navigation -->
+<ion-footer>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <!-- Control = /home -->
+    <ion-tab-button tab="home" routerLink="/home">
+      <ion-icon name="bulb-outline"></ion-icon>
+      <ion-label>Control</ion-label>
+    </ion-tab-button>
+
+    <!-- Patterns = /pattern -->
+    <ion-tab-button tab="pattern" routerLink="/pattern">
+      <ion-icon name="play-outline"></ion-icon>
+      <ion-label>Patterns</ion-label>
+    </ion-tab-button>
+
+    <!-- Learning = /learning -->
+    <ion-tab-button tab="learning" routerLink="/learning">
+      <ion-icon name="school-outline"></ion-icon>
+      <ion-label>Learning</ion-label>
+    </ion-tab-button>
+
+    <!-- System = /settings -->
+    <ion-tab-button tab="settings" routerLink="/settings">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>System</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-footer>

@@ -1,0 +1,173 @@
+@import '../../styles/variables';
+
+.page-profile {
+  ion-content {
+    --background: var(--theme-content-bg);
+  }
+
+  ion-toolbar {
+    --background: var(--theme-bg);
+    --border-color: transparent;
+  }
+
+  .header-title {
+    font-weight: 700;
+    color: var(--theme-main-text);
+  }
+
+  // Profile Header Card
+  .profile-header-card {
+    background: var(--theme-card-bg);
+    border-radius: $border-radius-lg;
+    border: 1px solid var(--theme-border);
+    margin: 16px;
+    text-align: center;
+    padding: 2rem 1rem;
+
+    .profile-avatar-container {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1rem;
+
+      .profile-avatar-wrapper {
+        position: relative;
+
+        .profile-avatar-large {
+          font-size: 6rem;
+          color: var(--theme-primary);
+        }
+
+        .profile-avatar-img {
+          width: 120px;
+          height: 120px;
+          border-radius: 50%;
+          object-fit: cover;
+          border: 4px solid var(--theme-primary);
+        }
+      }
+
+      .edit-avatar-btn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        --color: var(--theme-primary);
+        --background: var(--theme-card-bg);
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      }
+    }
+
+    .profile-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--theme-main-text);
+      margin: 1rem 0 0.5rem 0;
+    }
+
+    .profile-email {
+      font-size: 0.95rem;
+      color: var(--theme-secondary-text);
+      margin: 0.5rem 0;
+    }
+
+    .member-since {
+      font-size: 0.85rem;
+      color: var(--theme-secondary-text);
+      margin: 0.5rem 0 0 0;
+      opacity: 0.8;
+    }
+  }
+
+  // Profile Actions Card
+  .profile-actions-card {
+    margin: 16px;
+
+    .edit-profile-btn,
+    .settings-btn {
+      --border-color: var(--theme-primary);
+      --color: var(--theme-primary);
+      font-weight: 600;
+      margin-bottom: 12px;
+      height: 48px;
+
+      &:last-child {
+        margin-bottom: 0;
+      }
+
+      ion-icon {
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  // Profile Information Section
+  .profile-info-section {
+    margin-top: 24px;
+
+    .section-title {
+      font-size: 1em;
+      font-weight: 500;
+      color: var(--theme-main-text);
+      margin: 10px 0;
+      padding-left: 16px;
+    }
+
+    .info-card {
+      background: var(--theme-card-bg);
+      border-radius: $border-radius-md;
+      border: 1px solid var(--theme-border);
+      margin: 16px;
+      padding: 0;
+
+      .info-item {
+        display: flex;
+        align-items: center;
+        padding: 16px;
+        border-bottom: 1px solid var(--theme-border);
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .info-icon {
+          font-size: 1.5rem;
+          color: var(--theme-primary);
+          margin-right: 16px;
+          min-width: 24px;
+        }
+
+        .info-content {
+          flex: 1;
+
+          .info-label {
+            display: block;
+            font-size: 0.75rem;
+            color: var(--theme-secondary-text);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+            font-weight: 500;
+          }
+
+          .info-value {
+            font-size: 0.95rem;
+            color: var(--theme-main-text);
+            margin: 0;
+            font-weight: 500;
+          }
+        }
+      }
+    }
+  }
+
+  // Footer Tab Bar
+  ion-footer {
+    padding: 0;
+
+    &::before {
+      content: none;
+    }
+  }
+}

@@ -1,0 +1,127 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="header-title">Profile</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/profile-settings" class="profile-button">
+        <ion-icon name="settings-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding-horizontal">
+  <div class="page-profile">
+
+    <!-- Profile Header Card -->
+    <div class="profile-header-card ion-padding">
+      <div class="profile-avatar-container">
+        <div class="profile-avatar-wrapper">
+          <ion-icon 
+            name="person-circle" 
+            class="profile-avatar-large"
+            *ngIf="!userPhotoURL">
+          </ion-icon>
+          <img 
+            [src]="userPhotoURL" 
+            alt="Profile" 
+            class="profile-avatar-img"
+            *ngIf="userPhotoURL">
+        </div>
+        <ion-button 
+          fill="clear" 
+          class="edit-avatar-btn"
+          (click)="editProfile()">
+          <ion-icon name="camera-outline"></ion-icon>
+        </ion-button>
+      </div>
+      
+      <h1 class="profile-name">{{ userName }}</h1>
+      <p class="profile-email">{{ userEmail }}</p>
+      <p class="member-since">Member since {{ memberSince }}</p>
+    </div>
+
+    <!-- Profile Actions -->
+    <div class="profile-actions-card ion-padding">
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="edit-profile-btn"
+        (click)="editProfile()">
+        <ion-icon name="create-outline" slot="start"></ion-icon>
+        Edit Profile
+      </ion-button>
+
+      <ion-button
+        expand="block"
+        fill="outline"
+        class="settings-btn"
+        (click)="navigateToSettings()">
+        <ion-icon name="settings-outline" slot="start"></ion-icon>
+        Profile Settings
+      </ion-button>
+    </div>
+
+    <!-- Profile Information -->
+    <div class="profile-info-section">
+      <p class="section-title">Account Information</p>
+      
+      <div class="info-card">
+        <div class="info-item">
+          <ion-icon name="mail-outline" class="info-icon"></ion-icon>
+          <div class="info-content">
+            <label class="info-label">Email</label>
+            <p class="info-value">{{ userEmail }}</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <ion-icon name="person-outline" class="info-icon"></ion-icon>
+          <div class="info-content">
+            <label class="info-label">Display Name</label>
+            <p class="info-value">{{ userName }}</p>
+          </div>
+        </div>
+
+        <div class="info-item">
+          <ion-icon name="calendar-outline" class="info-icon"></ion-icon>
+          <div class="info-content">
+            <label class="info-label">Member Since</label>
+            <p class="info-value">{{ memberSince }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.page-profile -->
+</ion-content>
+
+<!-- Footer Navigation -->
+<ion-footer>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <!-- Control = /home -->
+    <ion-tab-button tab="home" routerLink="/home">
+      <ion-icon name="bulb-outline"></ion-icon>
+      <ion-label>Control</ion-label>
+    </ion-tab-button>
+
+    <!-- Patterns = /pattern -->
+    <ion-tab-button tab="pattern" routerLink="/pattern">
+      <ion-icon name="play-outline"></ion-icon>
+      <ion-label>Patterns</ion-label>
+    </ion-tab-button>
+
+    <!-- Learning = /learning -->
+    <ion-tab-button tab="learning" routerLink="/learning">
+      <ion-icon name="school-outline"></ion-icon>
+      <ion-label>Learning</ion-label>
+    </ion-tab-button>
+
+    <!-- System = /settings -->
+    <ion-tab-button tab="settings" routerLink="/settings">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>System</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-footer>

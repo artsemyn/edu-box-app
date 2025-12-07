@@ -1,0 +1,97 @@
+{
+  "animations": [
+    {
+      "id": "diagonal-bounce",
+      "name": "Diagonal Bounce",
+      "duration": "2:00",
+      "frameRate": 150,
+      "animNumber": 1,
+      "description": "Diagonal movement bouncing from top-left to bottom-right and back"
+    },
+    {
+      "id": "box-rotate",
+      "name": "Box Rotate",
+      "duration": "2:30",
+      "frameRate": 200,
+      "animNumber": 2,
+      "description": "Rotating box pattern around the edges"
+    },
+    {
+      "id": "wave",
+      "name": "Wave",
+      "duration": "2:15",
+      "frameRate": 150,
+      "animNumber": 3,
+      "description": "Wave pattern moving across rows"
+    },
+    {
+      "id": "heartbeat",
+      "name": "Heartbeat",
+      "duration": "1:45",
+      "frameRate": 300,
+      "animNumber": 4,
+      "description": "Pulsing heartbeat pattern from center"
+    },
+    {
+      "id": "checker",
+      "name": "Checker",
+      "duration": "2:00",
+      "frameRate": 250,
+      "animNumber": 5,
+      "description": "Checkerboard pattern blinking"
+    },
+    {
+      "id": "spiral",
+      "name": "Spiral",
+      "duration": "3:00",
+      "frameRate": 200,
+      "animNumber": 6,
+      "description": "Spiral pattern rotating from center"
+    },
+    {
+      "id": "rain",
+      "name": "Rain",
+      "duration": "2:30",
+      "frameRate": 100,
+      "animNumber": 7,
+      "description": "Rain drops falling down columns"
+    },
+    {
+      "id": "cross",
+      "name": "Cross",
+      "duration": "1:30",
+      "frameRate": 200,
+      "animNumber": 8,
+      "description": "Cross pattern expanding from center"
+    },
+    {
+      "id": "border-chase",
+      "name": "Border Chase",
+      "duration": "2:45",
+      "frameRate": 150,
+      "animNumber": 9,
+      "description": "Chasing pattern around the border"
+    },
+    {
+      "id": "blink-all",
+      "name": "Blink All",
+      "duration": "1:00",
+      "frameRate": 500,
+      "animNumber": 10,
+      "description": "All LEDs blinking together"
+    }
+  ],
+  "matrixSize": {
+    "rows": 6,
+    "columns": 6,
+    "totalLeds": 36
+  },
+  "firebaseStructure": {
+    "path": "/ledMatrix/animation",
+    "type": "integer",
+    "values": {
+      "stop": 0,
+      "animations": "1-10"
+    }
+  }
+}
