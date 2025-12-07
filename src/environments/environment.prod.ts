@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
   firebase: {
-    apiKey: "AIzaSyB0eqSeeQumIH6nJPY_1DxeWiqiY0Ro2Cs",
+    apiKey: "AIzaSyBzSr7e34jXrGxBPR9iT_rWmqxetFQJdOg",
     authDomain: "edubox-led.firebaseapp.com",
     databaseURL: "https://edubox-led-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "edubox-led",
