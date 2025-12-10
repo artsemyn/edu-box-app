@@ -50,7 +50,7 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding">
+<ion-content [fullscreen]="true">
   <div class="learning-container">
     
     <!-- Progress Bar -->
@@ -292,7 +292,7 @@
 
 
     <!-- Learning = /learning -->
-    <ion-tab-button tab="learning" routerLink="/learning" class="active-tab">
+    <ion-tab-button tab="learning" routerLink="/learning" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
       <div class="tab-active-bg">
         <ion-icon name="school-outline"></ion-icon>
         <ion-label>Learning</ion-label>
@@ -309,6 +309,18 @@
     <ion-tab-button tab="settings" routerLink="/settings">
       <ion-icon name="settings-outline"></ion-icon>
       <ion-label>System</ion-label>
+    </ion-tab-button>
+
+    <!-- Discuss = /discuss -->
+    <ion-tab-button tab="discuss" routerLink="/discuss">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+      <ion-label>Discuss</ion-label>
+    </ion-tab-button>
+
+    <!-- Code Editor = /code-editor -->
+    <ion-tab-button tab="code-editor" routerLink="/code-editor">
+      <ion-icon name="code-slash-outline"></ion-icon>
+      <ion-label>Code</ion-label>
     </ion-tab-button>
 
   </ion-tab-bar>

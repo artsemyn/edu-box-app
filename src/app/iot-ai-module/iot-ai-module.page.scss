@@ -8,11 +8,12 @@
   max-width: 1400px;
   margin: 0 auto;
   padding: $spacing-md;
-  padding-bottom: calc($spacing-xl + $tab-bar-height);
+  padding-bottom: calc($spacing-xl + $tab-bar-height + $spacing-md);
+  min-height: calc(100vh - #{$header-height} - #{$tab-bar-height} - #{$spacing-xl * 2});
 
   @include desktop {
     padding: $spacing-xl;
-    padding-bottom: calc($spacing-xl + $tab-bar-height);
+    padding-bottom: calc($spacing-xl * 2 + $tab-bar-height);
   }
 }
 
@@ -994,6 +995,7 @@
 @media (max-width: #{$breakpoint-desktop - 1px}) {
   .iot-ai-module-container {
     padding: $spacing-md;
+    padding-bottom: calc($spacing-xl + $tab-bar-height + $spacing-md);
   }
 
   .progress-card {
@@ -1129,6 +1131,11 @@
 }
 
 @media (max-width: 576px) {
+  .iot-ai-module-container {
+    padding: $spacing-sm;
+    padding-bottom: calc($spacing-lg + $tab-bar-height + $spacing-md);
+  }
+
   .progress-card {
     .progress-header {
       flex-direction: column;

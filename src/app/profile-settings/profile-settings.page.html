@@ -131,28 +131,39 @@
   <ion-tab-bar slot="bottom" class="custom-tab-bar">
 
     <!-- Control = /home -->
-    <ion-tab-button tab="home" routerLink="/home">
+    <ion-tab-button tab="home" routerLink="/home" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
       <ion-icon name="bulb-outline"></ion-icon>
       <ion-label>Control</ion-label>
     </ion-tab-button>
 
-
     <!-- Learning = /learning -->
-    <ion-tab-button tab="learning" routerLink="/learning">
+    <ion-tab-button tab="learning" routerLink="/learning" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
       <ion-icon name="school-outline"></ion-icon>
       <ion-label>Learning</ion-label>
     </ion-tab-button>
 
     <!-- IoT & AI Module = /iot-ai-module -->
-    <ion-tab-button tab="iot-ai-module" routerLink="/iot-ai-module">
+    <ion-tab-button tab="iot-ai-module" routerLink="/iot-ai-module" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
       <ion-icon name="rocket-outline"></ion-icon>
       <ion-label>IoT & AI</ion-label>
     </ion-tab-button>
 
     <!-- System = /settings -->
-    <ion-tab-button tab="settings" routerLink="/settings">
+    <ion-tab-button tab="settings" routerLink="/settings" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
       <ion-icon name="settings-outline"></ion-icon>
       <ion-label>System</ion-label>
+    </ion-tab-button>
+
+    <!-- Discuss = /discuss -->
+    <ion-tab-button tab="discuss" routerLink="/discuss" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+      <ion-label>Discuss</ion-label>
+    </ion-tab-button>
+
+    <!-- Code Editor = /code-editor -->
+    <ion-tab-button tab="code-editor" routerLink="/code-editor" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
+      <ion-icon name="code-slash-outline"></ion-icon>
+      <ion-label>Code</ion-label>
     </ion-tab-button>
 
   </ion-tab-bar>

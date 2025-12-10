@@ -47,6 +47,16 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'code-editor',
+    loadChildren: () => import('./code-editor/code-editor.module').then(m => m.CodeEditorPageModule),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'discuss',
+    loadChildren: () => import('./discuss/discuss.module').then(m => m.DiscussPageModule),
+    canActivate: [authGuard]
+  },
+  {
     path: '**',
     redirectTo: 'login',
     pathMatch: 'full'

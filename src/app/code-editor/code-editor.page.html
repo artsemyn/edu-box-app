@@ -1,0 +1,260 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-title class="ion-text-start fw-bold">
+      <ion-icon name="code-slash-outline" class="header-logo"></ion-icon>
+      <span class="text-primary">Code Editor</span>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/home">
+        <ion-icon name="home-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="page-code-editor">
+
+    <!-- Mobile Layout -->
+    <div class="mobile-layout">
+
+      <!-- Preview Section (Collapsible) -->
+      <div class="preview-card-mobile" [class.collapsed]="!showPreview">
+        <div class="preview-header-mobile" (click)="showPreview = !showPreview">
+          <ion-label class="fw-bold">LED Preview</ion-label>
+          <ion-icon [name]="showPreview ? 'chevron-up-outline' : 'chevron-down-outline'"></ion-icon>
+        </div>
+        
+        <div class="preview-content-mobile" *ngIf="showPreview">
+          <!-- LED Grid -->
+          <div class="grid-container-mobile">
+            <div
+              *ngFor="let led of ledGrid; let i = index"
+              class="led-cell"
+              [class.active]="led"
+            ></div>
+          </div>
+
+          <!-- Playback Controls -->
+          <div class="playback-controls-mobile">
+            <ion-button size="small" fill="clear" (click)="stepBackward()">
+              <ion-icon name="play-skip-back-outline"></ion-icon>
+            </ion-button>
+            <ion-button size="small" fill="solid" (click)="isPlaying ? pauseAnimation() : playAnimation()">
+              <ion-icon [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
+            </ion-button>
+            <ion-button size="small" fill="clear" (click)="stopAnimation()">
+              <ion-icon name="stop"></ion-icon>
+            </ion-button>
+            <ion-button size="small" fill="clear" (click)="stepForward()">
+              <ion-icon name="play-skip-forward-outline"></ion-icon>
+            </ion-button>
+          </div>
+          
+          <div class="frame-info">
+            Frame {{ currentFrameIndex + 1 }} / {{ frames.length }}
+          </div>
+        </div>
+      </div>
+
+      <!-- Code Editor Card -->
+      <div class="editor-card-mobile">
+        <div class="editor-header-mobile">
+          <ion-label class="fw-bold">JSON Code Editor</ion-label>
+        </div>
+
+        <!-- Template Selector -->
+        <div class="template-selector-mobile">
+          <ion-item>
+            <ion-label position="stacked">Pilih Template</ion-label>
+            <ion-select [(ngModel)]="selectedTemplate" (ionChange)="loadTemplate($event.detail.value)" placeholder="Pilih template">
+              <ion-select-option *ngFor="let key of templateKeys" [value]="key">
+                {{ getTemplateName(key) }}
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        </div>
+
+        <div class="editor-container-mobile">
+          <textarea 
+            class="code-textarea"
+            [(ngModel)]="editorContent"
+            (input)="onEditorChange()"
+            placeholder="Masukkan kode JSON di sini..."
+            spellcheck="false"
+          ></textarea>
+        </div>
+
+        <!-- Pattern Name Input -->
+        <div class="pattern-name-input-mobile">
+          <ion-item>
+            <ion-label position="stacked">Nama Pattern</ion-label>
+            <ion-input [(ngModel)]="patternName" placeholder="Masukkan nama pattern"></ion-input>
+          </ion-item>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons-mobile">
+          <ion-button expand="block" (click)="saveAnimation()">
+            <ion-icon name="save-outline" slot="start"></ion-icon>
+            Simpan
+          </ion-button>
+          <ion-button expand="block" fill="outline" (click)="shareAnimation()">
+            <ion-icon name="share-social-outline" slot="start"></ion-icon>
+            Bagikan
+          </ion-button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Desktop Layout -->
+    <div class="desktop-layout">
+      <div class="desktop-container">
+        
+        <!-- Left Side: Code Editor -->
+        <div class="left-section">
+          <div class="editor-card">
+            <div class="editor-header">
+              <ion-label class="fw-bold">JSON Code Editor</ion-label>
+              <div class="editor-mode-badge">
+                <ion-badge color="primary">JSON</ion-badge>
+              </div>
+            </div>
+
+            <!-- Template Selector -->
+            <div class="template-selector-desktop">
+              <ion-item>
+                <ion-label position="stacked">Pilih Template</ion-label>
+                <ion-select [(ngModel)]="selectedTemplate" (ionChange)="loadTemplate($event.detail.value)" placeholder="Pilih template">
+                  <ion-select-option *ngFor="let key of templateKeys" [value]="key">
+                    {{ getTemplateName(key) }}
+                  </ion-select-option>
+                </ion-select>
+              </ion-item>
+            </div>
+
+            <div class="editor-container">
+              <textarea 
+                class="code-textarea-desktop"
+                [(ngModel)]="editorContent"
+                (input)="onEditorChange()"
+                placeholder="Masukkan kode JSON di sini..."
+                spellcheck="false"
+              ></textarea>
+            </div>
+
+            <!-- Pattern Name Input -->
+            <div class="pattern-name-input-desktop">
+              <ion-item>
+                <ion-label position="stacked">Nama Pattern</ion-label>
+                <ion-input [(ngModel)]="patternName" placeholder="Masukkan nama pattern"></ion-input>
+              </ion-item>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="action-buttons-desktop">
+              <ion-button (click)="saveAnimation()">
+                <ion-icon name="save-outline" slot="start"></ion-icon>
+                Simpan
+              </ion-button>
+              <ion-button fill="outline" (click)="shareAnimation()">
+                <ion-icon name="share-social-outline" slot="start"></ion-icon>
+                Bagikan
+              </ion-button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Side: Preview -->
+        <div class="right-section">
+          <div class="preview-card">
+            <div class="preview-header">
+              <ion-label class="fw-bold">LED Preview</ion-label>
+            </div>
+
+            <!-- LED Grid -->
+            <div class="grid-container-desktop">
+              <div
+                *ngFor="let led of ledGrid; let i = index"
+                class="led-cell-desktop"
+                [class.active]="led"
+              ></div>
+            </div>
+
+            <!-- Playback Controls -->
+            <div class="playback-controls-desktop">
+              <ion-button size="default" fill="clear" (click)="stepBackward()">
+                <ion-icon name="play-skip-back-outline"></ion-icon>
+              </ion-button>
+              <ion-button size="default" fill="solid" (click)="isPlaying ? pauseAnimation() : playAnimation()">
+                <ion-icon [name]="isPlaying ? 'pause' : 'play'"></ion-icon>
+              </ion-button>
+              <ion-button size="default" fill="clear" (click)="stopAnimation()">
+                <ion-icon name="stop"></ion-icon>
+              </ion-button>
+              <ion-button size="default" fill="clear" (click)="stepForward()">
+                <ion-icon name="play-skip-forward-outline"></ion-icon>
+              </ion-button>
+            </div>
+            
+            <div class="frame-info-desktop">
+              <div class="frame-counter">
+                Frame {{ currentFrameIndex + 1 }} / {{ frames.length }}
+              </div>
+              <div class="frame-rate">
+                Frame Rate: {{ frameRate }}ms
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /.page-code-editor -->
+</ion-content>
+
+<!-- Footer Navigation -->
+<ion-footer>
+  <ion-tab-bar slot="bottom" class="custom-tab-bar">
+
+    <!-- Control = /home -->
+    <ion-tab-button tab="home" routerLink="/home">
+      <ion-icon name="bulb-outline"></ion-icon>
+      <ion-label>Control</ion-label>
+    </ion-tab-button>
+
+    <!-- Learning = /learning -->
+    <ion-tab-button tab="learning" routerLink="/learning">
+      <ion-icon name="school-outline"></ion-icon>
+      <ion-label>Learning</ion-label>
+    </ion-tab-button>
+
+    <!-- IoT & AI Module = /iot-ai-module -->
+    <ion-tab-button tab="iot-ai-module" routerLink="/iot-ai-module">
+      <ion-icon name="rocket-outline"></ion-icon>
+      <ion-label>IoT & AI</ion-label>
+    </ion-tab-button>
+
+    <!-- System = /settings -->
+    <ion-tab-button tab="settings" routerLink="/settings">
+      <ion-icon name="settings-outline"></ion-icon>
+      <ion-label>System</ion-label>
+    </ion-tab-button>
+
+    <!-- Discuss = /discuss -->
+    <ion-tab-button tab="discuss" routerLink="/discuss">
+      <ion-icon name="chatbubbles-outline"></ion-icon>
+      <ion-label>Discuss</ion-label>
+    </ion-tab-button>
+
+    <!-- Code Editor = /code-editor -->
+    <ion-tab-button tab="code-editor" routerLink="/code-editor" routerLinkActive="active-tab" [routerLinkActiveOptions]="{exact: true}">
+      <div class="tab-active-bg">
+        <ion-icon name="code-slash-outline"></ion-icon>
+        <ion-label>Code</ion-label>
+      </div>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-footer>
