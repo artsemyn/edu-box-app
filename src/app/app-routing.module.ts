@@ -22,11 +22,6 @@ const routes: Routes = [
     canActivate: [authGuard]
   },
   {
-    path: 'pattern',
-    loadChildren: () => import('./pattern/pattern.module').then(m => m.PatternPageModule),
-    canActivate: [authGuard]
-  },
-  {
     path: 'settings',
     loadChildren: () => import('./settings/settings.module').then(m => m.SettingsPageModule),
     canActivate: [authGuard]

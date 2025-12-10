@@ -1,13 +1,12 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { IonicModule, ModalController } from '@ionic/angular';
+import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 import { Router } from '@angular/router';
 import { ThemeService } from '../services/theme.service';
 import { AnimationPatternService, AnimationPattern } from '../services/animation-pattern.service';
 import { LedControlService } from '../services/led-control.service';
-import { CodeValidationService } from '../services/code-validation.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -45,9 +44,7 @@ export class HomePage implements OnInit, OnDestroy {
     private router: Router,
     private themeService: ThemeService,
     private animationPatternService: AnimationPatternService,
-    private ledControlService: LedControlService,
-    private codeValidationService: CodeValidationService,
-    private modalController: ModalController
+    private ledControlService: LedControlService
   ) {
     // Theme is always EDUBOX
     this.headerIcon = 'cube';
@@ -115,17 +112,8 @@ export class HomePage implements OnInit, OnDestroy {
       this.selectedPattern = null;
       this.stopAnimation();
     } else {
-      // SELALU validasi JSON code dulu sebelum play animasi
-      console.log('Checking JSON code validation for:', pattern.name);
-      const isValidated = await this.checkCodeValidation(pattern);
-      
-      if (!isValidated) {
-        console.log('JSON code validation failed or cancelled. NOT sending to Firebase.');
-        return; // User cancelled or failed validation - TIDAK kirim ke Firebase
-      }
-
-      // Hanya jika validasi berhasil, baru kirim perintah ke Firebase
-      console.log('JSON code validated successfully! Sending animation to Firebase:', pattern.name);
+      // Play animation directly without JSON validation
+      console.log('Playing animation directly:', pattern.name);
       try {
         await this.ledControlService.setAnimation(pattern.animNumber, pattern);
         console.log('Animation command sent to Firebase successfully');
@@ -138,37 +126,6 @@ export class HomePage implements OnInit, OnDestroy {
     }
   }
 
-  /**
-   * Check if code is validated, show modal if not
-   * SELALU tampilkan modal untuk input JSON code (untuk pembelajaran)
-   */
-  private async checkCodeValidation(pattern: AnimationPattern): Promise<boolean> {
-    // SELALU tampilkan modal untuk input JSON code
-    // Ini memastikan user selalu input kode JSON sebelum play animasi (untuk pembelajaran)
-    
-    const { CodeInputModalComponent } = await import('../components/code-input-modal/code-input-modal.component');
-    
-    const modal = await this.modalController.create({
-      component: CodeInputModalComponent,
-      componentProps: {
-        animationPattern: pattern
-      },
-      backdropDismiss: false, // Prevent dismissing without validation
-      cssClass: 'code-input-modal'
-    });
-
-    await modal.present();
-    
-    const result = await modal.onDidDismiss();
-    
-    // Hanya return true jika validasi berhasil
-    // Jika user cancel atau validasi gagal, return false (tidak kirim ke Firebase)
-    if (result.data?.validated === true) {
-      return true;
-    }
-    
-    return false;
-  }
 
   /**
    * Start playing an animation pattern
@@ -204,10 +161,4 @@ export class HomePage implements OnInit, OnDestroy {
     this.currentFrameIndex = 0;
   }
 
-  /**
-   * Navigate to patterns page
-   */
-  navigateToPatterns() {
-    this.router.navigate(['/pattern']);
-  }
 }
